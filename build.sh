@@ -70,9 +70,8 @@ output "Running hooks"
 
 gclient runhooks
 
-if [ -z "$BUILD_TYPE" ]; then
-    BUILD_TYPE="chromium"
-fi
+# first argument is the build type, default to chromium
+BUILD_TYPE="${1:-chromium}"
 
 if [ "$BUILD_TYPE" = "chromium" ]; then
     output "Building normal Chromium APK"
