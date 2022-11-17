@@ -10,6 +10,14 @@ START_DIR="$(pwd)"
 
 echo "Working in $START_DIR"
 
+if [ -d "bromite" ]; then
+    cd bromite
+    git pull
+    cd ..
+else
+    git clone https://github.com/bromite/bromite.git
+fi
+
 # Install depot_tools
 output "Checking depot_tools..."
 if [ -d "depot_tools" ]; then
@@ -48,8 +56,15 @@ cd src
 output "Done fetching code"
 
 output "Installing build dependencies"
+
+# Comment out the line that installs snapcraft - otherwise its installation fails in Docker and blocks the build forever
+sed -e '/ snapcraft\"/ s/^#*/    echo \"Skipping snapcraft\" # /' -i build/install-build-deps.sh
+
 build/install-build-deps.sh --no-prompt --arm || true
 build/install-build-deps-android.sh --no-prompt || true
+
+# Reset our uncommented line
+git checkout -- build/install-build-deps.sh
 
 output "Running hooks"
 

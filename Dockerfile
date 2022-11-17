@@ -1,7 +1,6 @@
-# Use ubuntu 20.04 as base image
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y git make wget curl
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git make wget curl lsb-release gcc python3 pkg-config build-essential sudo gperf
 
 # Set the working directory to /build
 WORKDIR /build
