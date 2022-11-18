@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git make wget curl lsb-release gcc python3 pkg-config build-essential sudo gperf
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git make wget curl lsb-release gcc python3 pkg-config build-essential sudo gperf ninja-build
 
 # Set the working directory to /build
 WORKDIR /build

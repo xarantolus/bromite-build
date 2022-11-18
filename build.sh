@@ -25,9 +25,9 @@ else
     exit 1
 fi
 
-BROMITE_RELEASE_COMMIT="$(cat "$START_DIR/bromite/build/RELEASE_COMMIT")"
+BROMITE_RELEASE_VERSION="$(cat "$START_DIR/bromite/build/RELEASE")"
 
-output "Build type: $BUILD_TYPE, building from $BROMITE_RELEASE_COMMIT with $ARGS_GN_FILE+$PATCHES_LIST_FILE in $OUT_DIR"
+output "Build type: $BUILD_TYPE, building from $BROMITE_RELEASE_VERSION with $ARGS_GN_FILE+$PATCHES_LIST_FILE in $OUT_DIR"
 
 output "Pulling Bromite repo"
 if [ -d "bromite" ]; then
@@ -69,12 +69,13 @@ else
     fetch --nohooks android
 fi
 
+echo "Currently in $(pwd)"
 cd src
 
 output "Done fetching code"
 
 output "Resetting Chromium source code to Bromite base version"
-git checkout -f "$BROMITE_RELEASE_COMMIT"
+git checkout -f "$BROMITE_RELEASE_VERSION"
 
 output "Applying patches"
 while read -r patch; do
@@ -84,6 +85,9 @@ while read -r patch; do
     output "Applying patch $patch"
     git apply "$START_DIR/bromite/build/patches/$patch"
 done < "$PATCHES_LIST_FILE"
+
+output "Syncing again with patches applied"
+gclient sync -D
 
 output "Installing build dependencies"
 

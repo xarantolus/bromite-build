@@ -2,8 +2,13 @@ ifeq ($(CONTAINER_NAME),)
 	CONTAINER_NAME := ghcr.io/xarantolus/chromium-android-build
 endif
 
-run: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME)
+all: chromium bromite
+
+chromium: container
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) chromium
+
+bromite:
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite
 
 container:
 	docker build -t $(CONTAINER_NAME) .
@@ -14,4 +19,4 @@ clean:
 shell:
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME)
 
-.PHONY: build dependencies container clean
+.PHONY: all chromium bromite container clean shell
