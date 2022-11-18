@@ -9,7 +9,7 @@ container:
 	docker build -t $(CONTAINER_NAME) .
 
 clean:
-	rm -rf chromium/src/out
+	rm -rf chromium/src/out chromium/old_*
 
 shell:
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME)
