@@ -114,8 +114,8 @@ output "END BUILD ARGS"
 
 gn gen --args="$ARGS_CONTENTS" "$OUT_DIR"
 
-output "Building $BUILD_TYPE"
+output "Building $BUILD_TYPE, starting at $(date)"
 ninja -C "$OUT_DIR" chrome_public_apk
 
-output "Done building $BUILD_TYPE"
+output "Done building $BUILD_TYPE, finished at $(date)"
 find "$OUT_DIR" -name "*.apk"
