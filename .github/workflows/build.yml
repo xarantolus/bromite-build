@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  bromite:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build Bromite in Docker
+      run: make bromite
+      
+    - name: Upload Bromite APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: bromite.apk
+        path: chromium/src/out/Bromite/apks/*.apk
+        retention-days: 14
+      
+  chromium:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build Chromium in Docker
+      run: make chromium
+      
+    - name: Upload Chromium APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: chromium.apk
+        path: chromium/src/out/Chromium/apks/*.apk
+        retention-days: 14
