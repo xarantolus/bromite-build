@@ -13,6 +13,17 @@ START_DIR="$(pwd)"
 
 output "Working in $START_DIR"
 
+output "Pulling Bromite repo"
+if [ -d "bromite" ]; then
+    cd bromite
+    git pull
+    cd ..
+else
+    git clone https://github.com/bromite/bromite.git
+fi
+
+output "Setting build info"
+
 # first argument is the build type, defaults to chromium
 BUILD_TYPE="${1:-chromium}"
 if [ "$BUILD_TYPE" = "chromium" ]; then
@@ -31,15 +42,6 @@ fi
 BROMITE_RELEASE_VERSION="$(cat "$START_DIR/bromite/build/RELEASE")"
 
 output "Build type: $BUILD_TYPE, building from $BROMITE_RELEASE_VERSION with $ARGS_GN_FILE+$PATCHES_LIST_FILE in $OUT_DIR"
-
-output "Pulling Bromite repo"
-if [ -d "bromite" ]; then
-    cd bromite
-    git pull
-    cd ..
-else
-    git clone https://github.com/bromite/bromite.git
-fi
 
 # Install depot_tools
 output "Checking depot_tools..."
