@@ -17,7 +17,12 @@ clean:
 	rm -rf chromium/src/out chromium/old_*
 	find chromium -iwholename ".git/index.lock" -delete
 
+install: install-windows
+
+install-windows:
+	adb.exe install -r chromium/src/out/Bromite/apks/ChromePublic.apk
+
 shell:
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME)
 
-.PHONY: all chromium bromite container clean shell
+.PHONY: all chromium bromite container clean shell install-windows install

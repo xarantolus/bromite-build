@@ -117,15 +117,18 @@ done < "$PATCHES_LIST_FILE"
 
 output "Finished applying patches"
 
-ARGS_CONTENTS="$(cat "$ARGS_GN_FILE")"
-ADDITIONAL_ARGS="target_cpu=\"arm64\""
-ARGS_CONTENTS="$ARGS_CONTENTS $ADDITIONAL_ARGS"
+# Only generate out dir if it doesn't exist
+if [ ! -d "$OUT_DIR" ]; then
+    ARGS_CONTENTS="$(cat "$ARGS_GN_FILE")"
+    ADDITIONAL_ARGS="target_cpu=\"arm64\""
+    ARGS_CONTENTS="$ARGS_CONTENTS $ADDITIONAL_ARGS"
 
-output "BUILD ARGS:"
-echo "$ARGS_CONTENTS"
-output "END BUILD ARGS"
+    output "BUILD ARGS:"
+    echo "$ARGS_CONTENTS"
+    output "END BUILD ARGS"
 
-gn gen --args="$ARGS_CONTENTS" "$OUT_DIR"
+    gn gen --args="$ARGS_CONTENTS" "$OUT_DIR"
+fi
 
 output "Building $BUILD_TYPE, starting at $(date)"
 ninja -C "$OUT_DIR" chrome_public_apk
