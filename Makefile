@@ -7,7 +7,7 @@ all: chromium bromite
 chromium: container
 	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) chromium
 
-bromite:
+bromite: container
 	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite
 
 container:
@@ -15,6 +15,7 @@ container:
 
 clean:
 	rm -rf chromium/src/out chromium/old_*
+	find chromium -iwholename ".git/index.lock" -delete
 
 shell:
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME)

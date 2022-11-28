@@ -6,6 +6,9 @@ output() {
     echo "--------------------------------------------------------------------------------"
 }
 
+git config user.name "xarantolus"
+git config user.email "xarantolus@protonmail.com"
+
 START_DIR="$(pwd)"
 
 output "Working in $START_DIR"
@@ -55,16 +58,19 @@ export PATH="$PATH:$(pwd)/depot_tools"
 
 output "All tools are installed"
 
-output "Downloading Chromium source code for Android"
 
 if [ -d "chromium" ]; then
   cd chromium
   # Basically reset to origin/master in case anything was changed, e.g. applied patches
-  cd src && git checkout -f -B master origin/master && cd ..
+  output "Cleaning repository"
+  cd src && git checkout -f -B master origin/master && git clean -fdx -e "out" && cd ..
+
+  output "Updating local chromium checkout Android"
   # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
   # The -D flag removes any unused/unnecessary parts of the repository that are no longer needed
-  gclient sync -D
+  gclient sync -D --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
 else
+    output "Fetching out Chromium for Android"
     mkdir chromium && cd chromium
     fetch --nohooks android
 fi
@@ -77,17 +83,9 @@ output "Done fetching code"
 output "Resetting Chromium source code to Bromite base version"
 git checkout -f "$BROMITE_RELEASE_VERSION"
 
-output "Applying patches"
-while read -r patch; do
-    if [ -z "$patch" ]; then
-        continue
-    fi
-    output "Applying patch $patch"
-    git apply "$START_DIR/bromite/build/patches/$patch"
-done < "$PATCHES_LIST_FILE"
-
-output "Syncing again with patches applied"
-gclient sync -D
+output "Creating build branch"
+# Now check out a new branch
+git checkout -b "$BUILD_TYPE-$(cat /proc/sys/kernel/random/uuid)"
 
 output "Installing build dependencies"
 
@@ -95,14 +93,29 @@ output "Installing build dependencies"
 sed -e '/ snapcraft\"/ s/^#*/    echo \"Skipping snapcraft\" # /' -i build/install-build-deps.sh
 
 # Install build dependencies
-build/install-build-deps.sh --no-prompt --arm || true
-build/install-build-deps-android.sh --no-prompt || true
+build/install-build-deps.sh --no-prompt --arm
+build/install-build-deps-android.sh --no-prompt
 
 # Reset our uncommented line above
 git checkout -- build/install-build-deps.sh
 
 output "Running hooks"
 gclient runhooks
+
+output "Applying patches"
+
+# first make sure any failed patches are removed
+git am --abort > /dev/null 2>&1 || true
+
+while read -r patch; do
+    if [ -z "$patch" ]; then
+        continue
+    fi
+    output "Applying patch $patch"
+    git am < "$START_DIR/bromite/build/patches/$patch"
+done < "$PATCHES_LIST_FILE"
+
+output "Finished applying patches"
 
 ARGS_CONTENTS="$(cat "$ARGS_GN_FILE")"
 ADDITIONAL_ARGS="target_cpu=\"arm64\""
