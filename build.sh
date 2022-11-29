@@ -92,7 +92,13 @@ if [ -d "chromium" ]; then
 else
     output "Fetching Chromium for Android"
     mkdir chromium && cd chromium
-    fetch --nohooks android
+
+    # Don't fetch history in CI
+    if [ "$CI" = "true" ]; then
+        fetch --nohooks --no-history android
+    else
+        fetch --nohooks android
+    fi
 fi
 
 echo "Currently in $(pwd)"
