@@ -35,8 +35,8 @@ else
     git clone https://github.com/bromite/bromite.git
 fi
 
-# Check out correct tag
-cd bromite && git checkout "$(cat build/RELEASE)" && cd ..
+# Check out the commit our patches are based upon
+cd bromite && git checkout "$(cat "$START_DIR/patches/BROMITE_COMMIT")" && cd ..
 
 # first argument is the build type, defaults to chromium
 BUILD_TYPE="${1:-chromium}"
