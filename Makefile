@@ -2,8 +2,6 @@ ifeq ($(CONTAINER_NAME),)
 	CONTAINER_NAME := ghcr.io/xarantolus/chromium-android-build
 endif
 
-all: chromium bromite
-
 bromite: container
 	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i bromite
 
@@ -37,4 +35,4 @@ install-windows:
 shell:
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME)
 
-.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium
+.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc
