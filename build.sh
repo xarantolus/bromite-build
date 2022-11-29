@@ -41,10 +41,12 @@ cd bromite && git checkout "$(cat "$START_DIR/patches/BROMITE_COMMIT")" && cd ..
 # first argument is the build type, defaults to chromium
 BUILD_TYPE="${1:-chromium}"
 if [ "$BUILD_TYPE" = "chromium" ]; then
+    MY_PATCHES_LIST_FILE="$START_DIR/patches/chromium_patch_list.txt"
     BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/chromium_patches_list.txt"
     ARGS_GN_FILE="$START_DIR/bromite/build/chromium.gn_args"
     OUT_DIR="out/Chromium"
 elif [ "$BUILD_TYPE" = "bromite" ]; then
+    MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
     BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
     ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
     OUT_DIR="out/Bromite"
@@ -149,7 +151,6 @@ git branch -D "xarantolus-$BUILD_TYPE-base" || true
 git checkout -b "xarantolus-$BUILD_TYPE-base"
 
 output "Applying patches from xarantolus"
-MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
 
 while read -r patch; do
     if [ -z "$patch" ]; then
