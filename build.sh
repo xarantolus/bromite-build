@@ -104,7 +104,7 @@ output "Resetting Chromium source code to Bromite base version"
 git checkout -f "$BROMITE_RELEASE_VERSION"
 
 output "Recreating bromite-$BUILD_TYPE-base branch"
-git branch -d "bromite-$BUILD_TYPE-base" || true
+git branch -D "bromite-$BUILD_TYPE-base" || true
 git checkout -b "bromite-$BUILD_TYPE-base"
 
 if [ ! "$2" = "patch" ]; then
@@ -139,7 +139,7 @@ done < "$BROMITE_PATCHES_LIST_FILE"
 
 # Now apply my own patches (on their own branch)
 output "Recreating xarantolus-$BUILD_TYPE branch"
-git branch -d "xarantolus-$BUILD_TYPE-base" || true
+git branch -D "xarantolus-$BUILD_TYPE-base" || true
 git checkout -b "xarantolus-$BUILD_TYPE-base"
 
 output "Applying patches from xarantolus"

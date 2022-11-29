@@ -5,19 +5,22 @@ endif
 all: chromium bromite
 
 bromite: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i bromite
 
 chromium: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) chromium
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i chromium
 
 patch-bromite: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite patch
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i bromite patch
 
 patch-chromium: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) chromium patch
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i chromium patch
 
 patch: container
-	docker run -v ${CURDIR}:/build --entrypoint /bin/bash -t $(CONTAINER_NAME) /build/extract_patches.sh
+	docker run -v ${CURDIR}:/build --entrypoint /bin/bash -t $(CONTAINER_NAME) -i /build/extract_patches.sh
+
+gc: container
+	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME) -c "cd chromium/src && git gc"
 
 container:
 	docker build -t $(CONTAINER_NAME) .
