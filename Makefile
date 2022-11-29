@@ -12,7 +12,7 @@ bromite: container
 	docker run -v ${CURDIR}:/build $(RUN_ARGS) bromite
 
 chromium: container
-	docker run -v ${CURDIR}:/build $(RUN_ARGS)chromium
+	docker run -v ${CURDIR}:/build $(RUN_ARGS) chromium
 
 patch-bromite: container
 	docker run -v ${CURDIR}:/build $(RUN_ARGS) bromite patch
