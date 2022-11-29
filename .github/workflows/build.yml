@@ -6,33 +6,79 @@ on:
 
 jobs:
   bromite:
+    name: Bromite
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
 
+    - name: Show available storage
+      shell: bash
+      run: df -h
+
+    - name: Free Disk Space
+      uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+
+    - name: Show available storage
+      shell: bash
+      run: df -h
+
     - name: Build Bromite in Docker
       run: make bromite
-      
+
     - name: Upload Bromite APK
       uses: actions/upload-artifact@v3
       with:
         name: bromite.apk
         path: chromium/src/out/Bromite/apks/*.apk
         retention-days: 14
-      
+
+    - name: Show available storage
+      shell: bash
+      run: df -h
+
   chromium:
+    name: Chromium
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
 
+    - name: Show available storage
+      shell: bash
+      run: df -h
+
+    - name: Free Disk Space
+      uses: jlumbroso/free-disk-space@v1.1.0
+      with:
+        tool-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+
+    - name: Show available storage
+      shell: bash
+      run: df -h
+
     - name: Build Chromium in Docker
       run: make chromium
-      
+
     - name: Upload Chromium APK
       uses: actions/upload-artifact@v3
       with:
         name: chromium.apk
         path: chromium/src/out/Chromium/apks/*.apk
         retention-days: 14
+
+    - name: Show available storage
+      shell: bash
+      run: df -h
