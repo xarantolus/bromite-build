@@ -3,19 +3,19 @@ ifeq ($(CONTAINER_NAME),)
 endif
 
 bromite: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i bromite
+	docker run -v ${CURDIR}:/build -it $(CONTAINER_NAME) bromite
 
 chromium: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i chromium
+	docker run -v ${CURDIR}:/build -it $(CONTAINER_NAME) chromium
 
 patch-bromite: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i bromite patch
+	docker run -v ${CURDIR}:/build -it $(CONTAINER_NAME) bromite patch
 
 patch-chromium: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) -i chromium patch
+	docker run -v ${CURDIR}:/build -it $(CONTAINER_NAME) chromium patch
 
 patch: container
-	docker run -v ${CURDIR}:/build --entrypoint /bin/bash -t $(CONTAINER_NAME) -i /build/extract_patches.sh
+	docker run -v ${CURDIR}:/build --entrypoint /bin/bash -it $(CONTAINER_NAME) /build/extract_patches.sh
 
 gc: container
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME) -c "cd chromium/src && git gc"
