@@ -1,0 +1,28 @@
+From 5a6e9471a289ae440edfd63d9a5958e52359ba71 Mon Sep 17 00:00:00 2001
+From: xarantolus <xarantolus@protonmail.com>
+Date: Tue, 29 Nov 2022 09:39:42 +0100
+Subject: [PATCH] Update Bromite package name
+
+---
+ chrome/android/BUILD.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ mode change 100644 => 100755 chrome/android/BUILD.gn
+
+diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
+old mode 100644
+new mode 100755
+index 568fc6e1a4c06..dbff3582c8e4c
+--- a/chrome/android/BUILD.gn
++++ b/chrome/android/BUILD.gn
+@@ -42,7 +42,7 @@ if (android_64bit_target_cpu && skip_secondary_abi_for_cq) {
+   assert(current_toolchain != android_secondary_abi_toolchain)
+ }
+ 
+-_default_package = "org.bromite.bromite"
++_default_package = "org.xarantolus.bromite"
+ if (android_channel != "default" && android_channel != "stable") {
+   # android-binary-size trybot may checks if an internal Chrome variant's
+   # AndroidManifest is as expected by ensuring the differences between its
+-- 
+2.25.1
+

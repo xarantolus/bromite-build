@@ -1,3 +1,15 @@
+#!/usr/bin/env bash
+# Script to download, create and manage a Chromium checkout for Bromite development
+#
+# Build chromium:
+#     ./build.sh chromium
+# Build Bromite:
+#     ./build.sh bromite
+# Create patch branch for chromium:
+#     ./build.sh chromium patch
+# Create patch branch for Bromite:
+#     ./build.sh bromite patch
+
 set -e # exit on error
 
 output() {
@@ -16,22 +28,24 @@ output "Working in $START_DIR"
 output "Pulling Bromite repo"
 if [ -d "bromite" ]; then
     cd bromite
+    git checkout -f -B master origin/master
     git pull
     cd ..
 else
     git clone https://github.com/bromite/bromite.git
 fi
 
-output "Setting build info"
+# Check out correct tag
+cd bromite && git checkout "$(cat build/RELEASE)" && cd ..
 
 # first argument is the build type, defaults to chromium
 BUILD_TYPE="${1:-chromium}"
 if [ "$BUILD_TYPE" = "chromium" ]; then
-    PATCHES_LIST_FILE="$START_DIR/bromite/build/chromium_patches_list.txt"
+    BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/chromium_patches_list.txt"
     ARGS_GN_FILE="$START_DIR/bromite/build/chromium.gn_args"
     OUT_DIR="out/Chromium"
 elif [ "$BUILD_TYPE" = "bromite" ]; then
-    PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
+    BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
     ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
     OUT_DIR="out/Bromite"
 else
@@ -41,7 +55,12 @@ fi
 
 BROMITE_RELEASE_VERSION="$(cat "$START_DIR/bromite/build/RELEASE")"
 
-output "Build type: $BUILD_TYPE, building from $BROMITE_RELEASE_VERSION with $ARGS_GN_FILE+$PATCHES_LIST_FILE in $OUT_DIR"
+if [ "$2" = "patch" ]; then
+    output "Patch type: $BUILD_TYPE, applying from $BROMITE_RELEASE_VERSION with $BROMITE_PATCHES_LIST_FILE"
+else
+    output "Build type: $BUILD_TYPE, building from $BROMITE_RELEASE_VERSION with $ARGS_GN_FILE + $BROMITE_PATCHES_LIST_FILE in $OUT_DIR"
+fi
+
 
 # Install depot_tools
 output "Checking depot_tools..."
@@ -64,15 +83,14 @@ output "All tools are installed"
 if [ -d "chromium" ]; then
   cd chromium
   # Basically reset to origin/master in case anything was changed, e.g. applied patches
-  output "Cleaning repository"
-  cd src && git checkout -f -B master origin/master && git clean -fdx -e "out" && cd ..
+  output "Cleaning Chromium repository"
+  cd src && git checkout -f -B master origin/master && cd ..
 
-  output "Updating local chromium checkout Android"
+  output "Updating local Chromium checkout for Android"
   # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
-  # The -D flag removes any unused/unnecessary parts of the repository that are no longer needed
-  gclient sync -D --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
+  gclient sync --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
 else
-    output "Fetching out Chromium for Android"
+    output "Fetching Chromium for Android"
     mkdir chromium && cd chromium
     fetch --nohooks android
 fi
@@ -85,24 +103,26 @@ output "Done fetching code"
 output "Resetting Chromium source code to Bromite base version"
 git checkout -f "$BROMITE_RELEASE_VERSION"
 
-output "Creating build branch"
-# Now check out a new branch
-git checkout -b "$BUILD_TYPE-$(cat /proc/sys/kernel/random/uuid)"
+output "Recreating bromite-$BUILD_TYPE-base branch"
+git branch -d "bromite-$BUILD_TYPE-base" || true
+git checkout -b "bromite-$BUILD_TYPE-base"
 
-output "Installing build dependencies"
+if [ ! "$2" = "patch" ]; then
+    output "Installing build dependencies"
 
-# Comment out the line that installs snapcraft - otherwise its installation fails in Docker and blocks the build forever
-sed -e '/ snapcraft\"/ s/^#*/    echo \"Skipping snapcraft\" # /' -i build/install-build-deps.sh
+    # Comment out the line that installs snapcraft - otherwise its installation fails in Docker and blocks the build forever
+    sed -e '/ snapcraft\"/ s/^#*/    echo \"Skipping snapcraft\" # /' -i build/install-build-deps.sh
 
-# Install build dependencies
-build/install-build-deps.sh --no-prompt --arm
-build/install-build-deps-android.sh --no-prompt
+    # Install build dependencies
+    build/install-build-deps.sh --no-prompt --arm
+    build/install-build-deps-android.sh --no-prompt
 
-# Reset our uncommented line above
-git checkout -- build/install-build-deps.sh
+    # Reset our uncommented line above
+    git checkout -- build/install-build-deps.sh
 
-output "Running hooks"
-gclient runhooks
+    output "Running hooks"
+    gclient runhooks
+fi
 
 output "Applying patches"
 
@@ -113,11 +133,31 @@ while read -r patch; do
     if [ -z "$patch" ]; then
         continue
     fi
-    output "Applying patch $patch"
+    output "Applying bromite patch $patch"
     git am < "$START_DIR/bromite/build/patches/$patch"
-done < "$PATCHES_LIST_FILE"
+done < "$BROMITE_PATCHES_LIST_FILE"
+
+# Now apply my own patches (on their own branch)
+output "Recreating xarantolus-$BUILD_TYPE branch"
+git branch -d "xarantolus-$BUILD_TYPE-base" || true
+git checkout -b "xarantolus-$BUILD_TYPE-base"
+
+output "Applying patches from xarantolus"
+MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
+
+while read -r patch; do
+    if [ -z "$patch" ]; then
+        continue
+    fi
+    output "Applying my own patch $patch"
+    git am < "$START_DIR/patches/$patch"
+done < "$MY_PATCHES_LIST_FILE"
 
 output "Finished applying patches"
+
+if [ "$2" = "patch" ]; then
+    exit 0
+fi
 
 # Only generate out dir if it doesn't exist
 if [ ! -d "$OUT_DIR" ]; then

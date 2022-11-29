@@ -4,11 +4,20 @@ endif
 
 all: chromium bromite
 
+bromite: container
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite
+
 chromium: container
 	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) chromium
 
-bromite: container
-	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite
+patch-bromite: container
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) bromite patch
+
+patch-chromium: container
+	docker run -v ${CURDIR}:/build -t $(CONTAINER_NAME) chromium patch
+
+patch: container
+	docker run -v ${CURDIR}:/build --entrypoint /bin/bash -t $(CONTAINER_NAME) /build/extract_patches.sh
 
 container:
 	docker build -t $(CONTAINER_NAME) .
@@ -25,4 +34,4 @@ install-windows:
 shell:
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build -it $(CONTAINER_NAME)
 
-.PHONY: all chromium bromite container clean shell install-windows install
+.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium
