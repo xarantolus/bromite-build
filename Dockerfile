@@ -5,6 +5,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y git make
 # Set the working directory to /build
 WORKDIR /build
 
+ENV PATH=$PATH:/build/depot_tools
+
 # Make sure git trusts all git repos
 RUN git config --global --add safe.directory *
 
