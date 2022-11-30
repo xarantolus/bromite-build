@@ -26,12 +26,11 @@ patch: container
 gc: container
 	docker run --entrypoint /bin/bash -v ${CURDIR}:/build $(RUN_ARGS) -c "cd chromium/src && git gc"
 
+clean: container
+	docker run --entrypoint /bin/bash -v ${CURDIR}:/build $(RUN_ARGS) -c "rm -rf chromium/src/out chromium/old_* && find chromium -iwholename ".git/index.lock" -delete"
+
 container:
 	docker build -t $(CONTAINER_NAME) .
-
-clean:
-	rm -rf chromium/src/out chromium/old_*
-	find chromium -iwholename ".git/index.lock" -delete
 
 install: install-windows
 
