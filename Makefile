@@ -1,5 +1,5 @@
 ifeq ($(CONTAINER_NAME),)
-	CONTAINER_NAME := ghcr.io/xarantolus/chromium-android-build
+	CONTAINER_NAME := ghcr.io/xarantolus/bromite-build
 endif
 
 RUN_ARGS=-it $(CONTAINER_NAME)
