@@ -25,7 +25,17 @@ chromium:
 	docker run $(RUN_ARGS) chromium
 	make apks
 
-current:
+bromine:
+	docker run $(RUN_ARGS) bromine
+	make apks
+
+current: current-bromine
+
+current-bromine:
+	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromine
+	make apks
+
+current-bromite:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromite
 	make apks
 
@@ -63,4 +73,4 @@ install-windows:
 shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
 
-.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches
+.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches current current-bromite current-bromine
