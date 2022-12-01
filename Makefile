@@ -35,6 +35,7 @@ patch-bromite:
 patch-chromium:
 	docker run $(RUN_ARGS) chromium patch
 
+patches: patch
 patch:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) /build/extract_patches.sh
 
@@ -61,4 +62,4 @@ install-windows:
 shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
 
-.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks
+.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches

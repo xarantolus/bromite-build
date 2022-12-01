@@ -29,3 +29,6 @@ RUN LATEST_COMPOSE_VERSION=$(curl -sSL "https://api.github.com/repos/docker/comp
 
 # Install other utilities
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y ripgrep fdupes
+
+# enable terminal colors
+RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
