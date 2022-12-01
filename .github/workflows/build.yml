@@ -28,11 +28,6 @@ jobs:
         large-packages: false
         swap-storage: true
 
-    - name: Set Swap Space
-      uses: pierotofy/set-swap-space@master
-      with:
-        swap-size-gb: 10
-
     - name: Show available storage
       shell: bash
       run: df -h
@@ -71,11 +66,6 @@ jobs:
         haskell: true
         large-packages: false
         swap-storage: true
-
-    - name: Set Swap Space
-      uses: pierotofy/set-swap-space@master
-      with:
-        swap-size-gb: 10
 
     - name: Show available storage
       shell: bash
