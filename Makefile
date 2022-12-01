@@ -1,5 +1,5 @@
 ifeq ($(CONTAINER_NAME),)
-	CONTAINER_NAME := ghcr.io/xarantolus/bromite-build
+	CONTAINER_NAME := ghcr.io/xarantolus/bromite-build:main
 endif
 
 RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v ${CURDIR}:/build
@@ -11,25 +11,28 @@ else
 endif
 
 
-bromite: container
+bromite:
 	docker run $(RUN_ARGS) bromite
 
-chromium: container
+chromium:
 	docker run -v $(RUN_ARGS) chromium
 
-patch-bromite: container
+current:
+	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromite
+
+patch-bromite:
 	docker run -v $(RUN_ARGS) bromite patch
 
-patch-chromium: container
+patch-chromium:
 	docker run -v $(RUN_ARGS) chromium patch
 
-patch: container
+patch:
 	docker run -v --entrypoint /bin/bash $(RUN_ARGS) /build/extract_patches.sh
 
-gc: container
+gc:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) -c "cd chromium/src && git gc"
 
-clean: container
+clean:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) -c "rm -rf chromium/src/out chromium/old_* && find chromium -iwholename ".git/index.lock" -delete"
 
 container:

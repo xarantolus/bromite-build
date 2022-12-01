@@ -13,6 +13,7 @@ Then make sure you have `make` installed. On Ubuntu, you can install it with `su
 Then you can take a look at the [`Makefile`](Makefile) to see what targets are available.
 * `bromite` (default): downloads Chromium and Bromite code, applies the patches and builds Bromite (the `chrome_public_apk` target)
 * `chromium`: downloads Chromium code and Bromite code and builds Chromium patched with some patches from Bromite (same as the official Bromite Chromium release)
+* `current`: Does *not* update the Chromium and Bromite code, but rather just builds what is there. This assumes you want to build Bromite (it uses the `out/Bromite` directory)
 * `patch-bromite`, `patch-chromium`: Downloads & patches the code, but doesn't run the build
 * `patch`: Extracts commits you made to certain branches to patch files in the `patches` directory
 * `container`: Builds the Docker container; this is done automatically before other targets that need it
