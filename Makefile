@@ -50,6 +50,7 @@ container:
 
 apks:
 	mkdir -p apks
+	cp chromium/src/out/Bromine/apks/ChromePublic.apk apks/Bromine-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
 	cp chromium/src/out/Bromite/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
 	cp chromium/src/out/Chromium/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
 	fdupes -f apks | grep -v '^$$' | xargs rm -v >> /dev/null 2>&1 || true

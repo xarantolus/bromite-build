@@ -3,5 +3,6 @@
 		"**/.git/objects/**": true,
 		"**/.git/subtree-cache/**": true,
 		"**/out/**": true,
-	}
+	},
+	"search.useIgnoreFiles": false,
 }
