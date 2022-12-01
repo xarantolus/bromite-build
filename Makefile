@@ -17,15 +17,20 @@ endif
 help:
 	@echo "See the README or Makefile for info on targets"
 
-bromite:
+confirm-branch-reset:
+	@if [ "$(CI)" != "true" ]; then \
+		read -p "This will reset the current branch, which might lead to a complete rebuild. Do you want to continue? [y/N] " REPLY && echo && if [ ! $${REPLY:-'N'} = 'y' ]; then echo "Aborting."; exit 1; fi \
+	fi
+
+bromite: confirm-branch-reset
 	docker run $(RUN_ARGS) bromite
 	make apks
 
-chromium:
+chromium: confirm-branch-reset
 	docker run $(RUN_ARGS) chromium
 	make apks
 
-bromine:
+bromine: confirm-branch-reset
 	docker run $(RUN_ARGS) bromine
 	make apks
 
@@ -39,10 +44,10 @@ current-bromite:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromite
 	make apks
 
-patch-bromite:
+patch-bromite: confirm-branch-reset
 	docker run $(RUN_ARGS) bromite patch
 
-patch-chromium:
+patch-chromium: confirm-branch-reset
 	docker run $(RUN_ARGS) chromium patch
 
 patches: patch
@@ -52,7 +57,7 @@ patch:
 gc:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) -c "cd chromium/src && git gc"
 
-clean:
+clean: confirm-branch-reset
 	docker run --entrypoint /bin/bash $(RUN_ARGS) -c "rm -rf chromium/src/out chromium/old_* && find chromium -iwholename ".git/index.lock" -delete"
 
 container:
@@ -73,4 +78,4 @@ install-windows:
 shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
 
-.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches current current-bromite current-bromine
+.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches current current-bromite current-bromine confirm-branch-reset
