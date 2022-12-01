@@ -6,6 +6,5 @@ source "$START_DIR/scripts/shared_functions.sh"
 
 setup "$1"
 
-install_chromium_dependencies
 generate_out_dir
 build_chromium
