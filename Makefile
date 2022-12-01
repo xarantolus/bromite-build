@@ -3,7 +3,7 @@ ifeq ($(CONTAINER_NAME),)
 endif
 
 ifeq ($(LOCAL_WORKSPACE_FOLDER),)
-	LOCAL_WORKSPACE_FOLDER=/build
+	LOCAL_WORKSPACE_FOLDER=${CURDIR}
 endif
 
 RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build"
