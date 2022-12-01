@@ -16,9 +16,6 @@ source "$START_DIR/scripts/shared_functions.sh"
 
 setup "$1"
 
-# Check out the commit our patches are based upon
-cd bromite && git checkout "$(cat "$START_DIR/patches/BROMITE_COMMIT")" && cd ..
-
 BROMITE_RELEASE_VERSION="$(cat "$START_DIR/bromite/build/RELEASE")"
 
 if [ "$2" = "patch" ]; then

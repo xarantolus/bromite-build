@@ -69,6 +69,9 @@ pull_bromite() {
 		git clone https://github.com/bromite/bromite.git
 	fi
 
+	# Check out the commit our patches are based upon
+	cd bromite && git checkout "$(cat "$START_DIR/patches/BROMITE_COMMIT")" && cd ..
+
 	popd > /dev/null
 }
 
