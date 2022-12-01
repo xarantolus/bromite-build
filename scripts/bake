@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e # exit on error
+
+
+# call make in project directory and pass all arguments
+cd "/workspaces/bromite-build"
+
+if [ $# -eq 0 ]; then
+	make current
+else
+	make "$@"
+fi

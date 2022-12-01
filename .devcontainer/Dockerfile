@@ -32,3 +32,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y ripgrep 
 
 # enable terminal colors
 RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
+
+# Make the scripts directory available in PATH
+ENV PATH="${PATH}:/workspaces/bromite-build/scripts"
