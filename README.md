@@ -1,12 +1,14 @@
 # bromite-build
-This repository contains scripts to build [Bromite](https://github.com/bromite/bromite) from source. Since I couldn't get a normal build to work, the build happens inside a Docker container.
+This repository contains scripts to build and edit [Bromite](https://github.com/bromite/bromite) from source. Since I couldn't get a normal build to work, the build happens inside a Docker container.
 
 Note that currently only a build for `arm64` is compiled.
 
-This repository also contains my own patches for Bromite, of which there currently aren't many. I'm also working on a few scripts to make creating patches etc. easier, but my current workflow isn't very good.
+This repository also contains my own patches for Bromite, of which there currently aren't many.
+
+This repository contains a [dev container](https://code.visualstudio.com/docs/devcontainers/containers) configuration, significantly simplifying the setup.
 
 ### Usage
-First you should make sure you have a machine that is powerful enough to run this build. I recommend having at least 16GB of RAM and a powerful processor.
+First you should make sure you have a machine that is powerful -enough to run this build. I recommend having at least 16GB of RAM and a powerful processor.
 
 Then make sure you have `make` installed. On Ubuntu, you can install it with `sudo apt install make`.
 

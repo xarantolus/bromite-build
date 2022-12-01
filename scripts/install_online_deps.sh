@@ -5,6 +5,8 @@ set -e # exit on error
 TEMP_DIR="$(mktemp -d)"
 trap "rm -rf $TEMP_DIR" EXIT
 
+pushd "$TEMP_DIR"
+
 git clone --depth 1 https://chromium.googlesource.com/chromium/src/build
 
 # Comment out the line that installs snapcraft - otherwise its installation fails in Docker and blocks the build forever
@@ -13,3 +15,5 @@ sed -e '/ snapcraft\"/ s/^#*/    echo \"Skipping snapcraft\" # /' -i build/insta
 # Install build dependencies
 build/install-build-deps.sh --no-prompt --arm
 build/install-build-deps-android.sh --no-prompt
+
+popd

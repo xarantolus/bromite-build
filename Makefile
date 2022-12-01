@@ -2,7 +2,11 @@ ifeq ($(CONTAINER_NAME),)
 	CONTAINER_NAME := ghcr.io/xarantolus/bromite-build:main
 endif
 
-RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v ${CURDIR}:/build
+ifeq ($(LOCAL_WORKSPACE_FOLDER),)
+	LOCAL_WORKSPACE_FOLDER=/build
+endif
+
+RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build"
 # if in CI, don't use interactive flag
 ifeq ($(CI),true)
 	RUN_ARGS+= -t $(CONTAINER_NAME)
@@ -10,13 +14,15 @@ else
 	RUN_ARGS+= -it $(CONTAINER_NAME)
 endif
 
+help:
+	@echo "See the README or Makefile for info on targets"
 
 bromite:
 	docker run $(RUN_ARGS) bromite
 	make apks
 
 chromium:
-	docker run -v $(RUN_ARGS) chromium
+	docker run $(RUN_ARGS) chromium
 	make apks
 
 current:
@@ -24,13 +30,13 @@ current:
 	make apks
 
 patch-bromite:
-	docker run -v $(RUN_ARGS) bromite patch
+	docker run $(RUN_ARGS) bromite patch
 
 patch-chromium:
-	docker run -v $(RUN_ARGS) chromium patch
+	docker run $(RUN_ARGS) chromium patch
 
 patch:
-	docker run -v --entrypoint /bin/bash $(RUN_ARGS) /build/extract_patches.sh
+	docker run --entrypoint /bin/bash $(RUN_ARGS) /build/extract_patches.sh
 
 gc:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) -c "cd chromium/src && git gc"
@@ -52,7 +58,7 @@ install: install-windows
 install-windows:
 	adb.exe install -r chromium/src/out/Bromite/apks/ChromePublic.apk
 
-shell: container
+shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
 
 .PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks
