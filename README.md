@@ -1,14 +1,14 @@
 # bromite-build
 This repository contains scripts to build and edit [Bromite](https://github.com/bromite/bromite) from source. Since I couldn't get a normal build to work, the build happens inside a Docker container.
 
-Note that currently only a build for `arm64` is compiled.
+Currently only a build for `arm64` is compiled. To [build for other architectures](https://chromium.googlesource.com/chromium/src/+/master/docs/android_build_instructions.md#figuring-out-target_cpu) one has to adjust the `target_cpu` flag passed to `gn` in the `generate_out_dir` function in [`scripts/shared_functions.sh`](scripts/shared_functions.sh).
 
 This repository also contains my own patches for Bromite, of which there currently aren't many.
 
-This repository contains a [dev container](https://code.visualstudio.com/docs/devcontainers/containers) configuration, significantly simplifying the setup.
+This repository contains a [dev container](https://code.visualstudio.com/docs/devcontainers/containers) configuration for VSCode. This makes it easy to build and edit the source, all dependencies are installed automatically.
 
 ### Usage
-First you should make sure you have a machine that is powerful -enough to run this build. I recommend having at least 16GB of RAM and a powerful processor.
+First you should make sure you have a machine that is powerful enough to run this build. I recommend having at least 16GB of RAM and a powerful processor.
 
 Then make sure you have `make` installed. On Ubuntu, you can install it with `sudo apt install make`.
 
