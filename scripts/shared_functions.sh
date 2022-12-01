@@ -37,7 +37,7 @@ install_depot_tools() {
 	popd > /dev/null
 }
 
-parse_build_arg(){
+parse_build_arg() {
 	export BUILD_TYPE="${1:-chromium}"
 
 	if [ "$BUILD_TYPE" = "chromium" ]; then
@@ -56,7 +56,7 @@ parse_build_arg(){
 	fi
 }
 
-pull_bromite(){
+pull_bromite() {
 	pushd "$START_DIR" > /dev/null
 
 	output "Pulling Bromite repo"

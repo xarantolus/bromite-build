@@ -13,12 +13,15 @@ endif
 
 bromite:
 	docker run $(RUN_ARGS) bromite
+	make apks
 
 chromium:
 	docker run -v $(RUN_ARGS) chromium
+	make apks
 
 current:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromite
+	make apks
 
 patch-bromite:
 	docker run -v $(RUN_ARGS) bromite patch
