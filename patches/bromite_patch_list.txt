@@ -1,1 +1,1 @@
-0001-Update-Bromite-package-name.patch
+0001-Package-name-icon-and-other-branding.patch
