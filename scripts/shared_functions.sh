@@ -93,13 +93,14 @@ pull_chromium() {
         # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
         gclient sync --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
 	else
-		output "Fetching Chromium for Android"
 		mkdir chromium && cd chromium
 
 		# Don't fetch history in CI
-		if [ "$CI" = "true" ]; then
+		if [ "$CI" == "true" ]; then
+			output "Fetching Chromium for Android (no history)"
 			fetch --nohooks --no-history android
 		else
+			output "Fetching Chromium for Android"
 			fetch --nohooks android
 		fi
 	fi
