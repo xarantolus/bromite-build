@@ -3,25 +3,43 @@ import os
 
 # This script generates the icon for the app from a defined icon file
 
-INPUT_FILE="assets/icon.png"
-OUTPUT_DIR="chromium/src/chrome/android/java/res_chromium_base"
+DEFAULT_ICON="assets/icon.png"
+LAYERED="assets/layered_app_icon.png"
+BACKGROUND_ICON="assets/background_icon.png"
+PRODUCT_IMG="assets/product_logo_name.png"
 
-for root, subdirs, files in os.walk(OUTPUT_DIR):
-	for file in files:
+OUTPUT_DIRS=[
+    "chromium/src/chrome/android/java/res_chromium_base",
+    "chromium/src/chrome/android/java/res_chromium",
+]
 
-		# png file and not background files
-		if file.endswith(".png") and not "background" in file:
-			file_path = os.path.join(root, file)
+def icon_to_use(filename):
+	filename = os.path.basename(filename).lower()
+	if "background" in filename:
+		return BACKGROUND_ICON
+	elif "layered" in filename:
+		return LAYERED
+	elif "logo_name" in filename:
+		return PRODUCT_IMG
+	else:
+		return DEFAULT_ICON
 
-			cmd = "ffmpeg -i " + file_path + " 2>&1 | grep -oE '([0-9]+x[0-9]+)'"
+for dir in OUTPUT_DIRS:
+	for root, subdirs, files in os.walk(dir):
+		for file in files:
+			# Basically replace all files that have a chromium logo in them with the matching file
+			if file.endswith(".png"):
+				file_path = os.path.join(root, file)
 
-			image_size = os.popen(cmd).read().strip()
+				cmd = "ffmpeg -i " + file_path + " 2>&1 | grep -oE '([0-9]+x[0-9]+)'"
 
-			# now use ffmpeg to resize INPUT_FILE to image_size and overwrite file_path
+				image_size = os.popen(cmd).read().strip()
 
-			cmd = "ffmpeg -i " + INPUT_FILE + " -pix_fmt rgba -s " + image_size + " -y " + file_path
-			os.system(cmd)
+				# now use ffmpeg to resize INPUT_FILE to image_size and overwrite file_path
 
-			print("Resized " + file_path + " to " + image_size)
+				cmd = "ffmpeg -i " + icon_to_use(file_path) + " -pix_fmt rgba -s " + image_size + " -y " + file_path
+				os.system(cmd)
+
+				print("Resized " + file_path + " to " + image_size)
 
 

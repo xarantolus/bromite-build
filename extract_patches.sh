@@ -24,6 +24,10 @@ if [[ "$BRANCH" != xarantolus-* ]] || [[ "$BRANCH" == *-base ]]; then
 	exit 1
 fi
 
+# Now we can remove all previous patches
+PATCHES="$(find "$START_DIR"/patches -name "*.patch")"
+rm -f $PATCHES
+
 git format-patch --no-numbered -o "$START_DIR/patches" "bromite-bromite-base..$BRANCH"
 
 echo "$BROMITE_LATEST_TAG" > "$START_DIR/patches/BROMITE_VERSION"
@@ -31,4 +35,3 @@ echo "$BROMITE_COMMIT" > "$START_DIR/patches/BROMITE_COMMIT"
 
 cd "$START_DIR/patches"
 ls *.patch > "$START_DIR/patches/bromite_patch_list.txt"
-

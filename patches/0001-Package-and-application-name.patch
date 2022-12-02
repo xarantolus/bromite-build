@@ -1,0 +1,45 @@
+From b0a4eecc4486aa87e088c7b1cccb8b8fc77ee234 Mon Sep 17 00:00:00 2001
+From: xarantolus <xarantolus@protonmail.com>
+Date: Fri, 2 Dec 2022 08:01:22 +0100
+Subject: [PATCH] Package and application name
+
+---
+ chrome/android/BUILD.gn                                |  2 +-
+ .../res_chromium_base/values/channel_constants.xml     | 10 +++++-----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
+index 568fc6e1a4c06..ac0a04b9e94cd 100644
+--- a/chrome/android/BUILD.gn
++++ b/chrome/android/BUILD.gn
+@@ -42,7 +42,7 @@ if (android_64bit_target_cpu && skip_secondary_abi_for_cq) {
+   assert(current_toolchain != android_secondary_abi_toolchain)
+ }
+ 
+-_default_package = "org.bromite.bromite"
++_default_package = "org.xarantolus.bromine"
+ if (android_channel != "default" && android_channel != "stable") {
+   # android-binary-size trybot may checks if an internal Chrome variant's
+   # AndroidManifest is as expected by ensuring the differences between its
+diff --git a/chrome/android/java/res_chromium_base/values/channel_constants.xml b/chrome/android/java/res_chromium_base/values/channel_constants.xml
+index b475689e9d23f..77cb8899caeac 100644
+--- a/chrome/android/java/res_chromium_base/values/channel_constants.xml
++++ b/chrome/android/java/res_chromium_base/values/channel_constants.xml
+@@ -7,9 +7,9 @@ found in the LICENSE file.
+ 
+ <resources xmlns:android="http://schemas.android.com/apk/res/android">
+     <!-- The application name displayed to the user. -->
+-    <string name="app_name" translatable="false">Chromium</string>
+-    <string name="bookmark_widget_title" translatable="false">Chromium bookmarks</string>
+-    <string name="search_widget_title" translatable="false">Chromium search</string>
+-    <string name="quick_action_search_widget_title" translatable="false">Chromium quick action search</string>
+-    <string name="dino_widget_title" translatable="false">Chromium dino</string>
++    <string name="app_name" translatable="false">Bromine</string>
++    <string name="bookmark_widget_title" translatable="false">Bromine bookmarks</string>
++    <string name="search_widget_title" translatable="false">Bromine search</string>
++    <string name="quick_action_search_widget_title" translatable="false">Bromine quick action search</string>
++    <string name="dino_widget_title" translatable="false">Bromine dino</string>
+ </resources>
+-- 
+2.25.1
+

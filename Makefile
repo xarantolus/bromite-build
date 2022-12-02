@@ -73,7 +73,7 @@ apks:
 install: install-windows
 
 install-windows:
-	adb.exe install -r chromium/src/out/Bromite/apks/ChromePublic.apk
+	adb.exe install -r chromium/src/out/Bromine/apks/ChromePublic.apk
 
 shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
