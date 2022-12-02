@@ -8,7 +8,7 @@ RUN chmod +x /tmp/scripts/install_online_deps.sh && /tmp/scripts/install_online_
 # Make sure git trusts all git repos
 RUN git config --global --add safe.directory "*"
 
-ENV PATH=$PATH:/build/depot_tools
+ENV PATH="$PATH:/build/depot_tools"
 
 # Set the working directory to /build
 WORKDIR /build
