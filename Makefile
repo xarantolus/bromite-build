@@ -30,14 +30,14 @@ chromium: confirm-branch-reset
 	docker run $(RUN_ARGS) chromium
 	make apks
 
-bromine: confirm-branch-reset
-	docker run $(RUN_ARGS) bromine
+potassium: confirm-branch-reset
+	docker run $(RUN_ARGS) potassium
 	make apks
 
-current: current-bromine
+current: current-potassium
 
-current-bromine:
-	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromine
+current-potassium:
+	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" potassium
 	make apks
 
 current-bromite:
@@ -65,7 +65,7 @@ container:
 
 apks:
 	mkdir -p apks
-	cp chromium/src/out/Bromine/apks/ChromePublic.apk apks/Bromine-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Potassium/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
 	cp chromium/src/out/Bromite/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
 	cp chromium/src/out/Chromium/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
 	fdupes -f apks | grep -v '^$$' | xargs rm -v >> /dev/null 2>&1 || true
@@ -73,9 +73,9 @@ apks:
 install: install-windows
 
 install-windows:
-	adb.exe install -r chromium/src/out/Bromine/apks/ChromePublic.apk
+	adb.exe install -r chromium/src/out/Potassium/apks/ChromePublic.apk
 
 shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
 
-.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches current current-bromite current-bromine confirm-branch-reset
+.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches current current-bromite current-potassium confirm-branch-reset

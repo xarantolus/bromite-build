@@ -7,8 +7,8 @@ on:
 
 
 jobs:
-  bromine:
-    name: Bromine
+  potassium:
+    name: Potassium
     runs-on: ubuntu-latest
 
     steps:
@@ -32,14 +32,14 @@ jobs:
       shell: bash
       run: df -h
 
-    - name: Build Bromine in Docker
-      run: make bromine
+    - name: Build Potassium in Docker
+      run: make potassium
 
-    - name: Upload Bromine APK
+    - name: Upload Potassium APK
       uses: actions/upload-artifact@v3
       with:
-        name: bromine.apk
-        path: chromium/src/out/Bromine/apks/*.apk
+        name: potassium.apk
+        path: chromium/src/out/Potassium/apks/*.apk
         retention-days: 14
 
     - name: Show available storage

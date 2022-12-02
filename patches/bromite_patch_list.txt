@@ -1,2 +1,2 @@
 0001-Package-and-application-name.patch
-0002-App-Product-icons.patch
+0002-Icons.patch

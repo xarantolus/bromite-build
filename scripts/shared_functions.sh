@@ -50,11 +50,11 @@ parse_build_arg() {
 		export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
 		export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
 		export OUT_DIR="out/Bromite"
-	elif [ "$BUILD_TYPE" = "bromine" ]; then
+	elif [ "$BUILD_TYPE" = "potassium" ]; then
 		export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
 		export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
 		export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
-		export OUT_DIR="out/Bromine"
+		export OUT_DIR="out/Potassium"
 	else
 		output "Unknown build type: $BUILD_TYPE"
 		exit 1
