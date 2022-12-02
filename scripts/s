@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+cd "/workspaces/bromite-build"
+
+rg --smart-case --max-columns 200 --trim --color auto --vimgrep \
+	--no-ignore \
+	-g '!chromium/src/out' \
+	-g '!chromium/src/third_party' \
+	"$@"

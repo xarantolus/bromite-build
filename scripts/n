@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+[ -z "$1" ] && exit 1
+
+cd "/workspaces/bromite-build"
+
+find chromium/src/ -name "*$@*" \
+	-not -path "chromium/src/out/*" \
+	-not -path "chromium/src/third_party/*" \
+	-not -path "chromium/src/ios/*" \
+	-not -path "chromium/src/base/win/*" \
+	-not -path "chromium/src/ash/*" \
+	-not -path "chromium/src/chrome/test/*" \
+	-not -name "*.png" \
+	-not -name "*.jpg" \
+	-not -name "*.jpeg" \
+	-not -name "*.svg" \
+	-not -name "*.icon" \
+	-not -name "*.css" \
+	-not -name "*.js" \
+	-not -name "*.html"
