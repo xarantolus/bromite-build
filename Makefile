@@ -6,7 +6,7 @@ ifeq ($(LOCAL_WORKSPACE_FOLDER),)
 	LOCAL_WORKSPACE_FOLDER=${CURDIR}
 endif
 
-RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build"
+RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build" -e "CI=${CI}"
 # if in CI, don't use interactive flag
 ifeq ($(CI),true)
 	RUN_ARGS+= -t $(CONTAINER_NAME)
