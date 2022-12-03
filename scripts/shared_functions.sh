@@ -172,8 +172,6 @@ generate_out_dir() {
     output "Generating $OUT_DIR directory"
 
     ARGS_CONTENTS="$(cat "$ARGS_GN_FILE")"
-    ADDITIONAL_ARGS="target_cpu=\"arm64\""
-    ARGS_CONTENTS="$ARGS_CONTENTS $ADDITIONAL_ARGS"
 
     output "BUILD ARGS:"
     echo "$ARGS_CONTENTS"

@@ -1,7 +1,7 @@
 # bromite-build
 This repository contains scripts to build and edit [Bromite](https://github.com/bromite/bromite) from source. Since I couldn't get a normal build to work, the build happens inside a Docker container.
 
-Currently only a build for `arm64` is compiled. To [build for other architectures](https://chromium.googlesource.com/chromium/src/+/master/docs/android_build_instructions.md#figuring-out-target_cpu) one has to adjust the `target_cpu` flag passed to `gn` in the `generate_out_dir` function in [`scripts/shared_functions.sh`](scripts/shared_functions.sh).
+Currently only a build for `arm64` is compiled. To [build for other architectures](https://chromium.googlesource.com/chromium/src/+/master/docs/android_build_instructions.md#figuring-out-target_cpu) one has to adjust the `target_cpu` flag passed to `gn` in the [build config](patches/potassium.gn_args).
 
 This repository also contains my own patches for Bromite, of which there currently aren't many.
 
