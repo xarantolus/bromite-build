@@ -1,6 +1,6 @@
-From 469a08475c869fcf7442444bda33a78c88d5bfd0 Mon Sep 17 00:00:00 2001
+From 09ed01f432c6fa719b63084eb747afee91ee3a9d Mon Sep 17 00:00:00 2001
 From: xarantolus <xarantolus@protonmail.com>
-Date: Fri, 2 Dec 2022 13:37:23 +0100
+Date: Sat, 3 Dec 2022 09:35:35 +0100
 Subject: [PATCH] Package and application name
 
 ---
@@ -11,18 +11,18 @@ Subject: [PATCH] Package and application name
  4 files changed, 181 insertions(+), 181 deletions(-)
 
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index 568fc6e1a4c06..de0a4fe0764ac 100644
+index 8cd50c454b578..a691bb5d4dc83 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
-@@ -42,7 +42,7 @@ if (android_64bit_target_cpu && skip_secondary_abi_for_cq) {
-   assert(current_toolchain != android_secondary_abi_toolchain)
- }
+@@ -47,7 +47,7 @@ chrome_jni_registration_header =
+ chrome_jni_for_test_registration_header = "$root_build_dir/gen/chrome/browser/android/chrome_jni_for_test_registration.h"
  
--_default_package = "org.bromite.bromite"
-+_default_package = "org.xarantolus.potassium"
- if (android_channel != "default" && android_channel != "stable") {
-   # android-binary-size trybot may checks if an internal Chrome variant's
-   # AndroidManifest is as expected by ensuring the differences between its
+ if (current_toolchain == default_toolchain) {
+-  _default_package = "org.bromite.bromite"
++  _default_package = "org.xarantolus.potassium"
+   if (use_stable_package_name_for_trichrome) {
+     _default_package += ".stable"
+   } else if (android_channel != "default" && android_channel != "stable") {
 diff --git a/chrome/android/java/res_chromium_base/values/channel_constants.xml b/chrome/android/java/res_chromium_base/values/channel_constants.xml
 index b475689e9d23f..8a39508e2258e 100644
 --- a/chrome/android/java/res_chromium_base/values/channel_constants.xml
@@ -43,7 +43,7 @@ index b475689e9d23f..8a39508e2258e 100644
 +    <string name="dino_widget_title" translatable="false">Potassium dino</string>
  </resources>
 diff --git a/chrome/browser/ui/android/strings/android_chrome_strings.grd b/chrome/browser/ui/android/strings/android_chrome_strings.grd
-index 132cc8c33bb96..4ff6f6c408836 100644
+index d819b14b67a5e..a84b63ec4c474 100644
 --- a/chrome/browser/ui/android/strings/android_chrome_strings.grd
 +++ b/chrome/browser/ui/android/strings/android_chrome_strings.grd
 @@ -1242,7 +1242,7 @@ Your Google account may have other forms of browsing history like searches and a
@@ -55,7 +55,7 @@ index 132cc8c33bb96..4ff6f6c408836 100644
        </message>
        <message name="IDS_INCOGNITO_HISTORY_ENABLED_TITLE" desc="Title for enabled history in incognito mode">
          Enable history
-@@ -2944,23 +2944,23 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
+@@ -2916,23 +2916,23 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
        <message name="IDS_ADBLOCK_UPDATER_PRIVACY_POLICY_URL" desc="URL for privacy policy for the ad block updater" translateable="false">
          https://docs.github.com/en/github/site-policy/github-privacy-statement#github-pages
        </message>
@@ -85,7 +85,7 @@ index 132cc8c33bb96..4ff6f6c408836 100644
          https://github.com/bromite/bromite/wiki/AutomaticUpdates
        </message>
        <message name="IDS_FRE_WELCOME" desc="Text for greeting the user on Chrome First Run">
-@@ -3568,9 +3568,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
+@@ -3541,9 +3541,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
  
        <!-- Main menu items -->
        <message name="IDS_MENU_UPDATE" desc="Menu item for updating chrome. [CHAR_LIMIT=24]">
@@ -97,7 +97,7 @@ index 132cc8c33bb96..4ff6f6c408836 100644
          Update not available. Read more
        </message>
        <message name="IDS_MENU_UPDATE_SUMMARY_DEFAULT" desc="Summary string for update menu item explaining that a newer version of Chrome is available. [CHAR_LIMIT=30]">
-@@ -3592,7 +3592,7 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
+@@ -3565,7 +3565,7 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
          Update ready
        </message>
        <message name="IDS_MENU_INLINE_UPDATE_READY_SUMMARY" desc="Summary text that is shown when Chrome has downloaded an update for itself and is ready to be restarted, which will apply the update.  This lets the user know the update will restart. [CHAR_LIMIT=24]">
@@ -106,7 +106,7 @@ index 132cc8c33bb96..4ff6f6c408836 100644
        </message>
        <message name="IDS_MENU_NEW_WINDOW" desc="Menu item for opening a new window. [CHAR_LIMIT=27]">
          New window
-@@ -4919,17 +4919,17 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
+@@ -4889,17 +4889,17 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
          Copied to your clipboard
        </message>
  
@@ -133,7 +133,7 @@ index 132cc8c33bb96..4ff6f6c408836 100644
  
        <!-- Sms Fetcher -->
 diff --git a/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb b/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb
-index d57a9ce6e491e..27ecd25854ee5 100644
+index c2ac32b9fc8fd..2477fbc14a650 100644
 --- a/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb
 +++ b/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb
 @@ -15,21 +15,21 @@
@@ -209,10 +209,10 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="1450753235335490080"><ph name="CONTENT_TYPE" /> kann nicht geteilt werden</translation>
 -<translation id="1466383950273130737">Sprache für Chrome auswählen</translation>
 +<translation id="1466383950273130737">Sprache für Potassium auswählen</translation>
- <translation id="147113415845704694">Sag zum Beispiel „Wie ist das Wetter heute?“</translation>
  <translation id="1474893630593443211">Mehr Kontrolle über angezeigte Werbung</translation>
  <translation id="1477626028522505441"><ph name="FILE_NAME" /> konnte aufgrund von Serverproblemen nicht heruntergeladen werden.</translation>
-@@ -118,8 +118,8 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+ <translation id="148482509007564431">Ablauf zum Speichern von Lesezeichen</translation>
+@@ -117,8 +117,8 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="1538801903729528855">Spracheingabe im Web besser nutzen</translation>
  <translation id="1544826120773021464">Wenn du dein Google-Konto verwalten möchtest, tippe auf die Schaltfläche "Konto verwalten"</translation>
  <translation id="1549000191223877751">Zu anderem Fenster wechseln</translation>
@@ -223,7 +223,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="1558391695376153246">Inkognitotabs schließen</translation>
  <translation id="1571304935088121812">Nutzernamen kopieren</translation>
  <translation id="1592864538817356322">Standardschutz</translation>
-@@ -129,13 +129,13 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -128,13 +128,13 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  Basierend auf deiner Interaktion mit einer Website, z. B. regelmäßige Anmeldungen in einem Konto, kann diese Website ein Trust Token für deinen Browser ausstellen. Wenn andere von dir besuchte Websites später dann ein gültiges Trust Token finden, ist die Wahrscheinlichkeit höher, dass du als Person und nicht als Bot eingestuft wirst.
  
  Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet werden, deine Identität zu ermitteln.</translation>
@@ -240,7 +240,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="1670399744444387456">Grundlegend</translation>
  <translation id="1671236975893690980">Download ausstehend...</translation>
  <translation id="1672586136351118594">Nicht mehr anzeigen</translation>
-@@ -146,7 +146,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -145,7 +145,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="1710099199314114079">Tabs wechseln oder schließen</translation>
  <translation id="1718835860248848330">Letzte Stunde</translation>
  <translation id="1724977129262658800">Entsperren, um dein Passwort zu bearbeiten</translation>
@@ -249,7 +249,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="173522743738009831">Informationen zu Privacy Sandbox</translation>
  <translation id="1736419249208073774">Entdecken</translation>
  <translation id="1749561566933687563">Lesezeichen synchronisieren</translation>
-@@ -161,27 +161,27 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -160,27 +160,27 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="1829244130665387512">Auf Seite suchen</translation>
  <translation id="1832459821645506983">Ok</translation>
  <translation id="1849863543394887018">Du kannst die Benachrichtigungen in den Einstellungen deaktivieren</translation>
@@ -282,7 +282,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="1963976881984600709">Standardschutz</translation>
  <translation id="1966710179511230534">Bitte aktualisiere deine Anmeldeinformationen.</translation>
  <translation id="197288927597451399">Behalten</translation>
-@@ -195,7 +195,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -194,7 +194,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2013642289801508067">{FILE_COUNT,plural, =1{# Datei}other{# Dateien}}</translation>
  <translation id="2021896219286479412">Vollbild-Steuerelemente</translation>
  <translation id="2038563949887743358">"Desktopversion ansehen" aktivieren</translation>
@@ -291,7 +291,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="2046634576464120978">Registrierung fehlgeschlagen</translation>
  <translation id="2049574241039454490"><ph name="FILE_SIZE_OF_TOTAL" /> <ph name="SEPARATOR" /> <ph name="DESCRIPTION" /></translation>
  <translation id="2052422354554967744">Im Internet suchen</translation>
-@@ -213,13 +213,13 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -212,13 +212,13 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2122601567107267586">App konnte nicht geöffnet werden</translation>
  <translation id="2132122640199389833">Alle verknüpften Geräte entfernen</translation>
  <translation id="213279576345780926"><ph name="TAB_TITLE" /> geschlossen</translation>
@@ -308,7 +308,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="2172688499998841696">Bildbeschreibungen sind deaktiviert</translation>
  <translation id="2172905120685242547">Fenster schließen?</translation>
  <translation id="2175927920773552910">QR-Code</translation>
-@@ -247,7 +247,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -246,7 +246,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2323763861024343754">Websitespeicher</translation>
  <translation id="2328985652426384049">Anmeldung nicht möglich</translation>
  <translation id="234265804618409743">Die Kamera kann nicht geöffnet werden. Ein Fehler ist aufgetreten.</translation>
@@ -317,7 +317,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="2353636109065292463">Internetverbindung überprüfen</translation>
  <translation id="235789365079050412">Datenschutzerklärung von Google</translation>
  <translation id="2359808026110333948">Weiter</translation>
-@@ -264,14 +264,14 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -263,14 +263,14 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2453860139492968684">Fertig</translation>
  <translation id="2459390580524506445">Verbesserte Sprachsuche</translation>
  <translation id="2461822463642141190">Aktuell</translation>
@@ -335,7 +335,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="2513403576141822879">Weitere Einstellungen in Verbindung mit Datenschutz, Sicherheit und der Erhebung von Daten findest du unter <ph name="BEGIN_LINK" />Synchronisierung und Google-Dienste<ph name="END_LINK" /></translation>
  <translation id="2517472476991765520">Scannen</translation>
  <translation id="2523184218357549926">URLs der von dir besuchten Seiten werden an Google gesendet</translation>
-@@ -288,8 +288,8 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -287,8 +287,8 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2567545343356994513">Schnellerer und dynamischerer Schutz gegen schädliche Websites, Downloads und Erweiterungen</translation>
  <translation id="2569733278091928697">Du kannst ganz einfach Dinge wie Mediensteuerelemente, Inkognitositzungen und Downloads verwalten</translation>
  <translation id="2571711316400087311">Anbieten, Seiten in anderen Sprachen an Google Übersetzer zu senden</translation>
@@ -346,7 +346,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="2587052924345400782">Neuere Version verfügbar</translation>
  <translation id="2593272815202181319">Monospace</translation>
  <translation id="2604446170045642109">Du kannst das dunkle Design für Websites in den Einstellungen deaktivieren.</translation>
-@@ -337,11 +337,11 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -336,12 +336,12 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2842985007712546952">Übergeordneter Ordner</translation>
  <translation id="2856503607207334158">Anmeldefehler</translation>
  <translation id="2860954141821109167">Prüfe, ob auf diesem Gerät eine Telefon-App aktiviert ist</translation>
@@ -354,25 +354,27 @@ index d57a9ce6e491e..27ecd25854ee5 100644
 +<translation id="2861923151411510142">Einige Potassium-Funktionen sind dann nicht mehr verfügbar</translation>
  <translation id="2870560284913253234">Website</translation>
  <translation id="2871733351037274014">Seiten vorab laden</translation>
+ <translation id="2876136027428473467"><ph name="CHILD_NAME" /> möchte, dass du diese Website genehmigst:</translation>
  <translation id="2886836735871983413">Wenn du im Web surfst, wird hier eine Liste mit Websites angezeigt</translation>
 -<translation id="2888126860611144412">Über Google Chrome</translation>
-+<translation id="2888126860611144412">Über Potassium</translation>
++<translation id="2888126860611144412">Über Google Potassium</translation>
  <translation id="2891154217021530873">Laden der Seite anhalten</translation>
  <translation id="2893180576842394309">Anhand deines Verlaufs kann Google die Google Suche und andere Google-Dienste personalisieren</translation>
  <translation id="2900528713135656174">Termin erstellen</translation>
-@@ -354,9 +354,9 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -354,10 +354,10 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2923908459366352541">Der Name ist ungültig</translation>
  <translation id="2932150158123903946">Google <ph name="APP_NAME" />-Speicher</translation>
  <translation id="2932222164150889403">Deine Tastaturbelegung ändert sich nicht</translation>
 -<translation id="2936980480904111527">Chrome-Benachrichtigungen machen dir das Leben leichter</translation>
 +<translation id="2936980480904111527">Potassium-Benachrichtigungen machen dir das Leben leichter</translation>
+ <translation id="2940075786175545812">Option, eine Website zu genehmigen oder nicht zu genehmigen</translation>
  <translation id="2942036813789421260">Vorschau-Tab ist geschlossen</translation>
 -<translation id="2946420957526726953">Chrome wird aktualisiert, um eine Verbindung mit anderen Geräten herzustellen</translation>
 +<translation id="2946420957526726953">Potassium wird aktualisiert, um eine Verbindung mit anderen Geräten herzustellen</translation>
  <translation id="2951071800649516099">Du kannst deiner Leseliste Seiten hinzufügen, um sie später zu lesen</translation>
  <translation id="2961208450284224863">{READING_LIST_UNREAD_PAGE_COUNT,plural, =1{<ph name="READING_LIST_UNREAD_PAGE_COUNT_ONE" /> ungelesene Seite}other{<ph name="READING_LIST_UNREAD_PAGE_COUNT_MANY" /> ungelesene Seiten}}</translation>
  <translation id="2961210776189273067">Anrede</translation>
-@@ -370,7 +370,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -371,7 +371,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="2994959273484668146"><ph name="DOMAIN" /> entfernen</translation>
  <translation id="2996291259634659425">Passphrase erstellen</translation>
  <translation id="2996809686854298943">URL erforderlich</translation>
@@ -382,7 +384,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="301080557829842765">Datenschutz-Leitfaden</translation>
  <translation id="3016635187733453316">Prüfe, ob das Gerät mit dem Internet verbunden ist</translation>
 @@ -381,16 +381,16 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
- <translation id="3034163383943672781">Beginn des Downloads: <ph name="DATE" />.</translation>
+ <translation id="3031225630520268969">Benutzeroberfläche für die Einwilligung in die Sprachsuche von Assistant</translation>
  <translation id="3036750288708366620"><ph name="BEGIN_LINK" />Hilfe aufrufen<ph name="END_LINK" /></translation>
  <translation id="3037177537145227281">Preis wird beobachtet</translation>
 -<translation id="3037517125981011456">Aufforderungen für die Anmeldung in Chrome werden angezeigt</translation>
@@ -398,7 +400,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="3066573403916685335">Nach unten</translation>
  <translation id="3070005020161560471">Automatisch übersetzen</translation>
 -<translation id="3072980200212375806"><ph name="APP_NAME" /> wird in Chrome geöffnet. Wenn du fortfährst, stimmst du den <ph name="BEGIN_LINK1" />Nutzungsbedingungen von Google<ph name="END_LINK1" /> und den <ph name="BEGIN_LINK2" />zusätzlichen Nutzungsbedingungen für Google Chrome und Chrome OS<ph name="END_LINK2" /> zu. Außerdem gilt die <ph name="BEGIN_LINK3" />Datenschutzerklärung<ph name="END_LINK3" />.</translation>
-+<translation id="3072980200212375806"><ph name="APP_NAME" /> wird in Potassium geöffnet. Wenn du fortfährst, stimmst du den <ph name="BEGIN_LINK1" />Nutzungsbedingungen von Google<ph name="END_LINK1" /> und den <ph name="BEGIN_LINK2" />zusätzlichen Nutzungsbedingungen für Potassium und Potassium OS<ph name="END_LINK2" /> zu. Außerdem gilt die <ph name="BEGIN_LINK3" />Datenschutzerklärung<ph name="END_LINK3" />.</translation>
++<translation id="3072980200212375806"><ph name="APP_NAME" /> wird in Potassium geöffnet. Wenn du fortfährst, stimmst du den <ph name="BEGIN_LINK1" />Nutzungsbedingungen von Google<ph name="END_LINK1" /> und den <ph name="BEGIN_LINK2" />zusätzlichen Nutzungsbedingungen für Google Potassium und Chrome OS<ph name="END_LINK2" /> zu. Außerdem gilt die <ph name="BEGIN_LINK3" />Datenschutzerklärung<ph name="END_LINK3" />.</translation>
  <translation id="3091010850649238832">Inhalte der Zwischenablage anzeigen</translation>
  <translation id="3098745985164956033">Einige Bilder werden an Google gesendet, um die Beschreibungen zu verbessern</translation>
  <translation id="3114507951000454849">Nachrichten von heute lesen <ph name="NEWS_ICON" /></translation>
@@ -431,7 +433,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="3250563604907490871">Bildbeschreibungen werden fortgesetzt, wenn du mit dem WLAN verbunden bist</translation>
  <translation id="3254409185687681395">Lesezeichen für diese Seite erstellen</translation>
  <translation id="3259831549858767975">Gesamten Seiteninhalt verkleinern</translation>
-@@ -426,9 +426,9 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -427,9 +427,9 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="3265534588625245297">Websites verwalten, denen du folgst</translation>
  <translation id="3269093882174072735">Bild laden</translation>
  <translation id="3280562213547448728">Sprachsuche</translation>
@@ -443,7 +445,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="3288003805934695103">Seite aktualisieren</translation>
  <translation id="3290249595466894471">Sendet außerdem eine kleine Auswahl von Seiten, Downloads, Erweiterungsaktivitäten und Systeminformationen, um die Erkennung neuer Bedrohungen zu verbessern</translation>
  <translation id="3297344142967351106">Sprachassistent</translation>
-@@ -437,10 +437,10 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -438,10 +438,10 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="3334729583274622784">Dateiendung ändern?</translation>
  <translation id="3341262203274374114">Nicht mehr folgen nicht möglich. Ein Fehler ist aufgetreten.</translation>
  <translation id="3359667936385849800">Aktuellen Anbieter verwenden</translation>
@@ -457,7 +459,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="3384347053049321195">Bild teilen</translation>
  <translation id="3387650086002190359"><ph name="FILE_NAME" /> konnte aufgrund von Dateisystemfehlern nicht heruntergeladen werden.</translation>
  <translation id="3389286852084373014">SMS zu lang</translation>
-@@ -449,12 +449,12 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
+@@ -450,12 +450,12 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="3407392651057365886">Es werden mehr Seiten vorab geladen. Seiten können über Google-Server vorab geladen werden, wenn dies von anderen Websites angefordert wird.</translation>
  <translation id="3414952576877147120">Größe:</translation>
  <translation id="3421726884497337397">Lege fest, wann Drittanbieter-Cookies blockiert werden sollen</translation>
@@ -469,9 +471,9 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="3444179773590444986">Feedback zu dunklem Design für Websites teilen?</translation>
 -<translation id="3452832259067974318">Um deine Daten zu schützen, füllt Chrome dieses Feld nicht automatisch mit deinem Passwort aus.</translation>
 +<translation id="3452832259067974318">Um deine Daten zu schützen, füllt Potassium dieses Feld nicht automatisch mit deinem Passwort aus.</translation>
- <translation id="3469665409713263828">{FILE_COUNT,plural, =1{1 Download geplant}other{# Downloads geplant}}</translation>
  <translation id="3474624961160222204">Als "<ph name="NAME" />" fortfahren</translation>
  <translation id="3478363558367712427">Du kannst deine Suchmaschine auswählen</translation>
+ <translation id="3479552764303398839">Jetzt nicht</translation>
 @@ -463,7 +463,7 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  <translation id="3495219333887281978">Ansicht zum Anmelden am unteren Rand ist halb geöffnet.</translation>
  <translation id="3499246418971111862">chrome_qrcode_<ph name="CURRENT_TIMESTAMP_MS" /></translation>
@@ -636,10 +638,10 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="49268022542405662">Deine Passwörter werden als Textdatei exportiert und heruntergeladen. Sie sind für jeden Nutzer und jede App mit Zugriff auf den Zielordner sichtbar.</translation>
 -<translation id="4932247056774066048">Da du dich von einem Konto abmeldest, das von <ph name="DOMAIN_NAME" /> verwaltet wird, werden deine Chrome-Daten auf diesem Gerät gelöscht. Die Daten bleiben jedoch in deinem Google-Konto.</translation>
 +<translation id="4932247056774066048">Da du dich von einem Konto abmeldest, das von <ph name="DOMAIN_NAME" /> verwaltet wird, werden deine Potassium-Daten auf diesem Gerät gelöscht. Die Daten bleiben jedoch in deinem Google-Konto.</translation>
- <translation id="4941179133499732445">Tippe auf das Mikrofon, um die Sprachsuche zu verwenden</translation>
  <translation id="4943703118917034429">Virtual Reality</translation>
  <translation id="4943872375798546930">Keine Ergebnisse</translation>
-@@ -751,7 +751,7 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+ <translation id="4950924971025849764">Wenn du im selben Google-Konto angemeldet bist, können andere Geräte dieses Smartphone als Sicherheitsschlüssel verwenden.</translation>
+@@ -750,7 +750,7 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5091249083535528968">Erweiterte Nutzungsdaten</translation>
  <translation id="509429900233858213">Ein Fehler ist aufgetreten.</translation>
  <translation id="5099845111805573968">Nachdem du eine Desktopwebsite einmal ausgewählt hast, wird die Einstellung jedes Mal auf die Website angewendet, wenn du sie besuchst</translation>
@@ -648,16 +650,16 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="510275257476243843">1 Stunde übrig</translation>
  <translation id="5115811374190515607">zu <ph name="PRODUCT_NAME" /></translation>
  <translation id="5118713593561876160">Interessen</translation>
-@@ -765,7 +765,7 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+@@ -764,7 +764,7 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5170568018924773124">In Ordner zeigen</translation>
  <translation id="5171045022955879922">Suchen oder URL eingeben</translation>
  <translation id="517734441743343109">Wenn du fortfährst, akzeptierst du damit die <ph name="BEGIN_TOS_LINK" />Nutzungsbedingungen<ph name="END_TOS_LINK" /> und die <ph name="BEGIN_PRIVACY_LINK" />Datenschutzerklärung<ph name="END_PRIVACY_LINK" />.</translation>
 -<translation id="5184329579814168207">In Chrome öffnen</translation>
 +<translation id="5184329579814168207">In Potassium öffnen</translation>
- <translation id="5188992787241350004">Sprachsuche verwenden</translation>
  <translation id="5191251636205085390">Weitere Informationen zu neuen Technologien als Ersatz für Drittanbieter-Cookies und ihrer Nutzung</translation>
  <translation id="5193988420012215838">In die Zwischenablage kopiert</translation>
-@@ -788,8 +788,8 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+ <translation id="5199929503336119739">Arbeitsprofil</translation>
+@@ -786,8 +786,8 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5304593522240415983">Dieses Feld darf nicht leer sein.</translation>
  <translation id="5308380583665731573">Verbinden</translation>
  <translation id="5317780077021120954">Speichern</translation>
@@ -668,7 +670,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="5324858694974489420">Jugendschutzeinstellungen</translation>
  <translation id="5326921373682845375">Da die vorab geladenen Seiten verschlüsselt sind und es sich bei der Website, die zu den Seiten verlinkt, um eine Google Sites-Website handelt, erhalten die Google-Server beim privaten Vorabladen dieser Seiten keine neuen Informationen.</translation>
  <translation id="5329858041417644019">Dein Browser wird nicht verwaltet</translation>
-@@ -817,14 +817,14 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+@@ -815,14 +815,14 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5458366071038729214">Hier erscheinen Websites, denen du folgst</translation>
  <translation id="5468068603361015296">Möchtest du <ph name="FILE_NAME" /> trotzdem herunterladen?</translation>
  <translation id="548278423535722844">In einer Karten-App öffnen</translation>
@@ -685,7 +687,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="5524843473235508879">Weiterleitung blockiert.</translation>
  <translation id="5548606607480005320">Sicherheitscheck</translation>
  <translation id="5555525474779371165">Safe Browsing-Schutz auswählen</translation>
-@@ -848,19 +848,19 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+@@ -846,19 +846,19 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5655963694829536461">In Downloads suchen</translation>
  <translation id="5659593005791499971">E-Mail</translation>
  <translation id="5665379678064389456">Termin in <ph name="APP_NAME" /> erstellen</translation>
@@ -710,7 +712,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="5754350196967618083">Discover kann nicht aktualisiert werden</translation>
  <translation id="5763382633136178763">Inkognito-Tabs</translation>
  <translation id="5763514718066511291">Tippen, um die URL für diese App zu kopieren</translation>
-@@ -879,8 +879,8 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+@@ -877,8 +877,8 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5814749351757353073">Lieblingswebsites im Blick behalten</translation>
  <translation id="583281660410589416">Unbekannt</translation>
  <translation id="5833984609253377421">Link teilen</translation>
@@ -721,14 +723,13 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="5842437907245493289">Du kannst deine beobachteten Produkte in den Lesezeichen über das Ordnersymbol organisieren</translation>
  <translation id="5853623416121554550">pausiert</translation>
  <translation id="5854512288214985237">Es werden keine Statistiken oder Absturzberichte an Google gesendet</translation>
-@@ -894,23 +894,23 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
+@@ -892,23 +892,23 @@ Wenn du diese Einstellung ändern möchtest, <ph name="BEGIN_LINK" />setze die S
  <translation id="5865733239029070421">Nutzungsstatistiken und Absturzberichte automatisch an Google senden</translation>
  <translation id="5869522115854928033">Gespeicherte Passwörter</translation>
  <translation id="5869789175361934029">Tabs von einem anderen Gerät sehen</translation>
 -<translation id="587735546353481577">Wenn du einer Website folgen möchtest, rufe die Website auf, öffne das Chrome-Menü und tippe auf „Folgen“.</translation>
 +<translation id="587735546353481577">Wenn du einer Website folgen möchtest, rufe die Website auf, öffne das Potassium-Menü und tippe auf „Folgen“.</translation>
  <translation id="5879072387416556377">Bessere Vorschläge erhalten</translation>
- <translation id="5880748256563468367">Zum Feed</translation>
 -<translation id="5884076754568147479">Wenn du in Chrome mit Assistant Aufgaben erledigst, werden die URLs und Inhalte der Websites, auf denen du Assistant verwendest, sowie die Daten, die du über Assistant weitergibst, an Google gesendet</translation>
 -<translation id="5906513782029855931">Wenn Google Assistant die URLs von Websites kennt, kannst du Aufgaben leichter erledigen. Du kannst Assistant in den Einstellungen von Chrome deaktivieren.</translation>
 +<translation id="5884076754568147479">Wenn du in Potassium mit Assistant Aufgaben erledigst, werden die URLs und Inhalte der Websites, auf denen du Assistant verwendest, sowie die Daten, die du über Assistant weitergibst, an Google gesendet</translation>
@@ -743,6 +744,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
 +<translation id="5956665950594638604">Potassium-Hilfe in einem neuen Tab öffnen</translation>
  <translation id="5957442310066583693">Auf die Schaltfläche „Startseite“ tippen, um deine Top-Websites aufzurufen</translation>
  <translation id="5958275228015807058">Deine Dateien und Seiten findest du unter "Downloads"</translation>
+ <translation id="5958994127112619898">Seite vereinfachen</translation>
  <translation id="5962718611393537961">Zum Minimieren tippen</translation>
  <translation id="5964869237734432770">Bildbeschreibungen beenden</translation>
 -<translation id="5966233851250124270">Chrome speichert deine Auswahl</translation>
@@ -750,7 +752,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="5979084224081478209">Passwörter prüfen</translation>
  <translation id="5995726099713306770">Seite noch einmal herunterladen?</translation>
  <translation id="6000066717592683814">Google beibehalten</translation>
-@@ -945,7 +945,7 @@ Privacy Sandbox befindet sich noch in der Entwicklung und Testversionen sind nur
+@@ -943,7 +943,7 @@ Privacy Sandbox befindet sich noch in der Entwicklung und Testversionen sind nur
  <translation id="6150320133806434356">Lesezeichen ist gespeichert</translation>
  <translation id="6154478581116148741">Aktiviere die Displaysperre unter „Einstellungen“, um deine Passwörter aus dem Gerät zu exportieren</translation>
  <translation id="6159729262978459665">Löscht den Verlauf auf allen synchronisierten Geräten.</translation>
@@ -758,8 +760,8 @@ index d57a9ce6e491e..27ecd25854ee5 100644
 +<translation id="6162892189396105610">In Potassium werden Seiten vorab geladen, die du wahrscheinlich aufrufen wirst.</translation>
  <translation id="6186394685773237175">Keine gehackten Passwörter gefunden</translation>
  <translation id="6192907950379606605">Bildbeschreibungen abrufen</translation>
- <translation id="6196315980958524839">Passwörter werden auf diesem Gerät im Google Passwortmanager gespeichert</translation>
-@@ -981,7 +981,7 @@ Einige Websites schalten möglicherweise Werbeanzeigen, deren Auswahl nicht dara
+ <translation id="6193448654517602979">Tabs auswählen</translation>
+@@ -979,7 +979,7 @@ Einige Websites schalten möglicherweise Werbeanzeigen, deren Auswahl nicht dara
  <translation id="6357653805084533597">Du kannst dich über dieses Smartphone auf dem Gerät anmelden, auf dem dieser QR-Code angezeigt wird.</translation>
  <translation id="6363990818884053551">Bestätige deine Identität, um die Synchronisierung zu starten</translation>
  <translation id="6364438453358674297">Vorschlag aus Verlauf entfernen?</translation>
@@ -768,7 +770,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="6385407407546870227">Wenn Tests aktiviert sind, verwendet die Spam- und Betrugsreduzierung Trust Tokens, um Websites bei der Betrugsbekämpfung und der Unterscheidung zwischen Bots und Personen zu unterstützen.
  
  Basierend auf deiner Interaktion mit einer Website, z. B. regelmäßige Anmeldungen in einem Konto, kann diese Website ein Trust Token für deinen Browser ausstellen. Wenn andere von dir besuchte Websites später dann ein gültiges Trust Token finden, ist die Wahrscheinlichkeit höher, dass du als Person und nicht als Bot eingestuft wirst.
-@@ -990,7 +990,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -988,7 +988,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="6394791151443660613">Suchen: <ph name="SEARCH_QUERY" /></translation>
  <translation id="6395288395575013217">LINK</translation>
  <translation id="6397616442223433927">Wieder online</translation>
@@ -777,7 +779,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="6402652558933147609"><ph name="ERROR_CODE" /> auf <ph name="VIOLATED_URL" /></translation>
  <translation id="6403371459378431832">Daten auf allen Geräten synchronisieren</translation>
  <translation id="6404511346730675251">Lesezeichen bearbeiten</translation>
-@@ -999,7 +999,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -997,7 +997,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="6410404864818553978">Grundlegende Nutzungsdaten</translation>
  <translation id="6410883413783534063">Öffne Tabs, um mehrere Seiten gleichzeitig zu besuchen</translation>
  <translation id="6411219469806822692">Screenshot kann nicht nach oben erweitert werden. Beginne weiter oben auf der Seite.</translation>
@@ -786,7 +788,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="641643625718530986">Drucken...</translation>
  <translation id="6422857128426228781">Hier findest du deine beobachteten Produkte</translation>
  <translation id="6433501201775827830">Suchmaschine auswählen</translation>
-@@ -1010,16 +1010,16 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1008,16 +1008,16 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="6447558397796644647">Das Lesezeichen wurde nicht gefunden. Prüfe die Schreibweise oder füge ein neues Lesezeichen hinzu.</translation>
  <translation id="6459045781120991510">Umfragen</translation>
  <translation id="6461962085415701688">Datei kann nicht geöffnet werden</translation>
@@ -806,7 +808,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="6534565668554028783">Die Antwort von Google hat zu lange gedauert</translation>
  <translation id="6539092367496845964">Ein Fehler ist aufgetreten. Versuche es später noch einmal.</translation>
  <translation id="6541042852576515209">Größe anpassen und drehen</translation>
-@@ -1032,29 +1032,29 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1030,29 +1030,29 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="6565959834589222080">WLAN wird verwendet, wenn es verfügbar ist</translation>
  <translation id="6569373978618239158">Ab jetzt wirst du beim Öffnen eines neuen Tabs „<ph name="SITE_NAME" />“-Artikel sehen. Websites, denen du folgst, werden in deinem Google-Konto gespeichert. Du kannst sie in den Discover-Einstellungen verwalten.</translation>
  <translation id="6573096386450695060">Immer zulassen</translation>
@@ -842,7 +844,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="6648977384226967773">{CONTACT,plural, =1{<ph name="CONTACT_PREVIEW" />\u2026 und <ph name="NUMBER_OF_ADDITIONAL_CONTACTS" /> weitere}other{<ph name="CONTACT_PREVIEW" />\u2026 und <ph name="NUMBER_OF_ADDITIONAL_CONTACTS" /> weitere}}</translation>
  <translation id="6649642165559792194">Bildvorschau <ph name="BEGIN_NEW" />Neu<ph name="END_NEW" /></translation>
  <translation id="6657585470893396449">Passwort</translation>
-@@ -1062,9 +1062,9 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1060,9 +1060,9 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="666731172850799929">In <ph name="APP_NAME" /> öffnen</translation>
  <translation id="6671495933530132209">Bild kopieren</translation>
  <translation id="6674571176963658787">Gib deine Passphrase ein, um die Synchronisierung zu starten</translation>
@@ -855,7 +857,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="670498945988402717">Gestern geprüft</translation>
  <translation id="6710213216561001401">Zurück</translation>
  <translation id="671481426037969117">Dein <ph name="FQDN" />-Timer ist abgelaufen. Morgen startet er neu.</translation>
-@@ -1078,11 +1078,11 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1076,11 +1076,11 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="6767294960381293877">Die Liste von Geräten, mit denen ein Tab geteilt werden kann, ist halb geöffnet.</translation>
  <translation id="6770042910635026163">Von dir besuchte Websites, die deine Interessen definieren</translation>
  <translation id="6770602306803890733">Verbessert die Sicherheit für dich und alle im Internet</translation>
@@ -942,9 +944,9 @@ index d57a9ce6e491e..27ecd25854ee5 100644
 -<translation id="7437998757836447326">Von Chrome abmelden</translation>
 +<translation id="7437998757836447326">Von Potassium abmelden</translation>
  <translation id="7443901082822119557">Wenn der Inkognitomodus aktiviert ist, können Websites keine Cookies verwenden, um deine Browseraktivitäten auf anderen Websites zu sehen und beispielsweise zur Personalisierung von Werbung zu nutzen. Einige Websites funktionieren dann möglicherweise nicht mehr richtig.</translation>
- <translation id="7444811645081526538">Weitere Kategorien</translation>
  <translation id="7453467225369441013">Du wirst von den meisten Websites, aber nicht aus deinem Google-Konto abgemeldet.</translation>
-@@ -1207,7 +1207,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+ <translation id="7454641608352164238">Zu wenig Speicherplatz</translation>
+@@ -1206,7 +1206,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="749294055653435199">Google Lens ist auf diesem Gerät nicht verfügbar</translation>
  <translation id="7493994139787901920"><ph name="VERSION" /> (aktualisiert <ph name="TIME_SINCE_UPDATE" />)</translation>
  <translation id="7498271377022651285">Bitte warten...</translation>
@@ -953,16 +955,16 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="750228856503700085">Keine Updates verfügbar</translation>
  <translation id="7507207699631365376"><ph name="BEGIN_LINK" />Datenschutzerklärung<ph name="END_LINK" /> dieses Dienstanbieters ansehen</translation>
  <translation id="7514365320538308">Herunterladen</translation>
-@@ -1216,7 +1216,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1214,7 +1214,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+ <translation id="752220631458524187">Wenn du fertig bist, kannst du die Verbindung trennen</translation>
  <translation id="7523960634226602883">Mit deiner Kamera über Google Lens suchen</translation>
- <translation id="753225086557513863">Für später geplant</translation>
  <translation id="7562080006725997899">Browserdaten werden gelöscht</translation>
 -<translation id="756809126120519699">Gelöschte Chrome-Daten</translation>
 +<translation id="756809126120519699">Gelöschte Potassium-Daten</translation>
  <translation id="7577900504646297215">Interessen verwalten</translation>
  <translation id="757855969265046257">{FILES,plural, =1{<ph name="FILES_DOWNLOADED_ONE" /> Datei heruntergeladen}other{<ph name="FILES_DOWNLOADED_MANY" /> Dateien heruntergeladen}}</translation>
  <translation id="7581273696622423628">An Umfrage teilnehmen</translation>
-@@ -1228,7 +1228,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1226,7 +1226,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="7612619742409846846">Bei Google angemeldet als</translation>
  <translation id="7616551326690708776">Wähle eine Vorlage für die Markierung aus.</translation>
  <translation id="7619072057915878432"><ph name="FILE_NAME" /> konnte aufgrund von Netzwerkfehlern nicht heruntergeladen werden.</translation>
@@ -971,7 +973,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="7630202231528827509">Anbieter-URL</translation>
  <translation id="7634280112532283638">Spam- und Betrugsreduzierung</translation>
  <translation id="7638584964844754484">Falsche Passphrase</translation>
-@@ -1252,7 +1252,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1250,7 +1250,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="7725024127233776428">Seiten, die du als Lesezeichen speicherst, werden hier angezeigt.</translation>
  <translation id="7757787379047923882">Text geteilt von <ph name="DEVICE_NAME" /></translation>
  <translation id="7762668264895820836">SD-Karte <ph name="SD_CARD_NUMBER" /></translation>
@@ -980,7 +982,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="7764225426217299476">Adresse hinzufügen</translation>
  <translation id="7772032839648071052">Passphrase bestätigen</translation>
  <translation id="7772375229873196092"><ph name="APP_NAME" /> schließen</translation>
-@@ -1280,10 +1280,10 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1277,10 +1277,10 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="7875915731392087153">E-Mail erstellen</translation>
  <translation id="7876243839304621966">Alle entfernen</translation>
  <translation id="7879130110979560610">{READING_LIST_REMINDER_NOTIFICATION_SUBTITLE,plural, =1{Du hast <ph name="READING_LIST_REMINDER_NOTIFICATION_SUBTITLE_ONE" /> ungelesene Seite}other{Du hast <ph name="READING_LIST_REMINDER_NOTIFICATION_SUBTITLE_MANY" /> ungelesene Seiten}}</translation>
@@ -993,7 +995,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="7903184275147100332">Dies kann einen Moment dauern</translation>
  <translation id="7919123827536834358">Diese Sprachen automatisch übersetzen</translation>
  <translation id="7926975587469166629">Kartenalias</translation>
-@@ -1306,7 +1306,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1303,7 +1303,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="7998918019931843664">Geschlossenen Tab wieder öffnen</translation>
  <translation id="8004582292198964060">Browser</translation>
  <translation id="8006818846907410687">Im Inkognitomodus blockieren</translation>
@@ -1002,7 +1004,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8015452622527143194">Gesamten Seiteninhalt auf Standardgröße zurücksetzen</translation>
  <translation id="8026334261755873520">Browserdaten löschen</translation>
  <translation id="8027863900915310177">Speicherort auswählen</translation>
-@@ -1319,7 +1319,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1317,7 +1317,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8048728378294435881">Möchtest du deine Daten sichern und auf jedem Gerät verwenden?</translation>
  <translation id="8051695050440594747"><ph name="MEGABYTES" /> MB verfügbar</translation>
  <translation id="8058655154417507695">Ablaufjahr</translation>
@@ -1011,7 +1013,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8062594758852531064">Erweitertes Vorabladen:</translation>
  <translation id="8063895661287329888">Fehler beim Hinzufügen des Lesezeichens.</translation>
  <translation id="806745655614357130">Daten getrennt halten</translation>
-@@ -1330,14 +1330,14 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1328,14 +1328,14 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8084285576995584326">Google-Kontodaten verwalten</translation>
  <translation id="808747664143081553">Mit Gerät verbunden</translation>
  <translation id="8088176524274673045">Um diesen Inhalt mit Personen in deiner Nähe zu teilen, bitte sie, den QR-Code zu scannen</translation>
@@ -1030,7 +1032,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8127542551745560481">Startseite bearbeiten</translation>
  <translation id="8130309322784422030">Deine gespeicherten Anmeldedaten sind möglicherweise veraltet</translation>
  <translation id="813082847718468539">Website-Informationen anzeigen</translation>
-@@ -1356,7 +1356,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1353,7 +1353,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8221656072740924283">Weiter</translation>
  <translation id="8223642481677794647">Feedkartenmenü</translation>
  <translation id="8250920743982581267">Dokumente</translation>
@@ -1039,7 +1041,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8255617931166444521">Websites können deine Cookies nur verwenden, um deine Browseraktivitäten auf der eigenen Website zu sehen</translation>
  <translation id="8259179246279078674">Da die vorab geladenen Seiten verschlüsselt sind, erfährt Google nichts über den Inhalt der vorab geladenen Seiten. Bestimmte Google-Server wissen nur, welche Websites privat vorab geladen werden. Diese Informationen werden ausschließlich zum Vorabladen der Seiten verwendet und nicht mit anderen Daten aus deinem Google-Konto verknüpft.</translation>
  <translation id="8260126382462817229">Melde dich noch einmal an</translation>
-@@ -1370,22 +1370,22 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1367,23 +1367,23 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8310344678080805313">Standard-Tabs</translation>
  <translation id="831192587911042850">Fügt die aktuell geöffnete Website der Liste mit Websites hinzu, denen du folgst.</translation>
  <translation id="834313815369870491">Websites nie übersetzen</translation>
@@ -1056,6 +1058,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8393700583063109961">Nachricht senden</translation>
 -<translation id="8394720698884623075">Prüft URLs anhand einer Liste unsicherer Websites, die in Chrome gespeichert ist</translation>
 +<translation id="8394720698884623075">Prüft URLs anhand einer Liste unsicherer Websites, die in Potassium gespeichert ist</translation>
+ <translation id="8402673309244746971">Zu „Folge ich“ wechseln</translation>
  <translation id="8410695015584479363">Preise beobachten</translation>
  <translation id="8413126021676339697">Gesamtverlauf anzeigen</translation>
  <translation id="8414396119627470038">Mit <ph name="IDENTITY_PROVIDER_ETLD_PLUS_ONE" /> in <ph name="SITE_ETLD_PLUS_ONE" /> anmelden</translation>
@@ -1067,7 +1070,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8427875596167638501">Vorschau-Tab ist halb geöffnet</translation>
  <translation id="8428213095426709021">Einstellungen</translation>
  <translation id="8430824733382774043">Nur Screenshot teilen</translation>
-@@ -1412,16 +1412,16 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1410,16 +1410,16 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8497242791509864205">Sortierungsoptionen öffnen</translation>
  <translation id="8497480609928300907">Erläuterungen zum Datenschutz-Leitfaden</translation>
  <translation id="8497726226069778601">Noch keine Seiten</translation>
@@ -1088,7 +1091,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8559990750235505898">Übersetzung von fremdsprachigen Seiten anbieten</translation>
  <translation id="8560560256644480257">GIF wird erstellt <ph name="PERCENT" /> %%</translation>
  <translation id="8560602726703398413">In den Lesezeichen findest du deine Leseliste</translation>
-@@ -1434,7 +1434,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1432,7 +1432,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8583805026567836021">Kontodaten werden gelöscht</translation>
  <translation id="859046281437143747">Über die Schaltfläche „Weitere Optionen“ kannst du den Preis beobachten</translation>
  <translation id="860043288473659153">Name des Karteninhabers</translation>
@@ -1097,7 +1100,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="860282621117673749">Benachrichtigungen bei Preisnachlässen</translation>
  <translation id="8616006591992756292">Unter <ph name="BEGIN_LINK" />myactivity.google.com<ph name="END_LINK" /> sind möglicherweise weitere Arten von Browserverlaufsdaten für dein Google-Konto gespeichert.</translation>
  <translation id="8617240290563765734">Soll die im heruntergeladenen Inhalt angegebene URL geöffnet werden?</translation>
-@@ -1444,10 +1444,10 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1442,10 +1442,10 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="864544049772947936">Fenster verwalten (<ph name="INSTANCE_COUNTS" />)</translation>
  <translation id="8645920082661222035">Erkennt schädliche Ereignisse im Voraus und warnt dich, bevor sie eintreten</translation>
  <translation id="8646467750715887511">Seiten werden nur geladen, wenn du sie tatsächlich öffnest.</translation>
@@ -1111,7 +1114,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8664979001105139458">Dateiname schon vorhanden</translation>
  <translation id="8666759526542103597">Informationen zu browserbasierter personalisierter Werbung</translation>
  <translation id="8676789164135894283">Anmeldebestätigungen</translation>
-@@ -1491,8 +1491,8 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1489,8 +1489,8 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8922289737868596582">Seiten über die Schaltfläche "Weitere Optionen" zur Offline-Ansicht herunterladen</translation>
  <translation id="8924575305646776101"><ph name="BEGIN_LINK" />Weitere Informationen<ph name="END_LINK" /></translation>
  <translation id="892496902842311796"><ph name="LANG" /> ist bereit</translation>
@@ -1122,7 +1125,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="8942627711005830162">In anderem Fenster öffnen</translation>
  <translation id="8945143127965743188"><ph name="LANG" /> – Diese Sprache konnte nicht heruntergeladen werden. Versuche es später noch einmal.</translation>
  <translation id="8955719471735800169">Zurück nach oben</translation>
-@@ -1504,17 +1504,17 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1502,17 +1502,17 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="8972098258593396643">In Standardordner herunterladen?</translation>
  <translation id="8987641763863173640">Einstellungen für die Videovorschau verwalten</translation>
  <translation id="898854820045159673">Reaktion hinzugefügt</translation>
@@ -1141,9 +1144,9 @@ index d57a9ce6e491e..27ecd25854ee5 100644
 -<translation id="9065383040763568503">Gespeicherte Daten, die Chrome nicht für wichtig hält, wie etwa Websites ohne gespeicherte Einstellungen oder solche, die nicht oft besucht werden</translation>
 +<translation id="9065383040763568503">Gespeicherte Daten, die Potassium nicht für wichtig hält, wie etwa Websites ohne gespeicherte Einstellungen oder solche, die nicht oft besucht werden</translation>
  <translation id="906781307897697745">in <ph name="PRODUCT_NAME" /></translation>
- <translation id="9069543557624799859">Der Download beginnt um <ph name="TIME" />.</translation>
  <translation id="9069999660519089861">Keine ungelesenen Seiten</translation>
-@@ -1548,14 +1548,14 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+ <translation id="9070377983101773829">Sprachsuche starten</translation>
+@@ -1545,14 +1545,14 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="9212845824145208577">Screenshot kann nicht nach unten erweitert werden. Beginne weiter unten auf der Seite.</translation>
  <translation id="9219103736887031265">Bilder</translation>
  <translation id="9219582468404818260">Hilf uns, das Internet zu verbessern</translation>
@@ -1162,7 +1165,7 @@ index d57a9ce6e491e..27ecd25854ee5 100644
  <translation id="962979164594783469">App installieren</translation>
  <translation id="96681097142096641">Vereinfachte Seite ansehen?</translation>
  <translation id="968900484120156207">Von dir besuchte Seiten werden hier angezeigt</translation>
-@@ -1566,4 +1566,4 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
+@@ -1563,4 +1563,4 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="987264212798334818">Allgemein</translation>
  <translation id="992745192656291733"><ph name="TAB_COUNT" /> Tabs</translation>
  <translation id="996149300115483134">Feedkartenmenü ist geschlossen</translation>
