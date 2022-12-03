@@ -18,4 +18,5 @@ find chromium/src/ -name "*$@*" \
 	-not -name "*.icon" \
 	-not -name "*.css" \
 	-not -name "*.js" \
-	-not -name "*.html"
+	-not -name "*.html" \
+	-not -name "*.generated" \

@@ -6,4 +6,9 @@ rg --smart-case --max-columns 200 --trim --color auto --vimgrep \
 	--no-ignore \
 	-g '!chromium/src/out' \
 	-g '!chromium/src/third_party' \
+	-g '!chromium/src/ios' \
+	-g '!chromium/src/base/win' \
+	-g '!chromium/src/ash' \
+	-g '!chromium/src/chrome/test' \
+	-g '!*.generated' \
 	"$@"

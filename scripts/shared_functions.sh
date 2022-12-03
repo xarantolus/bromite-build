@@ -2,7 +2,7 @@
 set -e # exit on error
 
 if [ -z "$START_DIR" ]; then
-	START_DIR="$(pwd)"
+    START_DIR="$(pwd)"
 fi
 
 output() {
@@ -12,102 +12,111 @@ output() {
 }
 
 set_email() {
-	git config user.name "xarantolus"
-	git config user.email "xarantolus@protonmail.com"
+    git config user.name "xarantolus"
+    git config user.email "xarantolus@protonmail.com"
 }
 
 install_depot_tools() {
-	pushd "$START_DIR" > /dev/null
+    pushd "$START_DIR" > /dev/null
 
-	# Install depot_tools
-	output "Checking depot_tools..."
-	if [ -d "depot_tools" ]; then
-		cd depot_tools
-		git reset --hard HEAD # in case anything was saved here
-		git pull origin "$CURRENT_BRANCH"
-		cd ..
-	else
-		# Install depot_tools
-		git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-	fi
+    # Install depot_tools
+    output "Checking depot_tools..."
+    if [ -d "depot_tools" ]; then
+        cd depot_tools
+        git reset --hard HEAD # in case anything was saved here
+        git pull origin "$CURRENT_BRANCH"
+        cd ..
+    else
+        # Install depot_tools
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+    fi
 
-	# make them available for further build steps
-	export PATH="$PATH:$(pwd)/depot_tools"
+    # make them available for further build steps
+    export PATH="$PATH:$(pwd)/depot_tools"
 
-	popd > /dev/null
+    popd > /dev/null
 }
 
 parse_build_arg() {
-	export BUILD_TYPE="${1:-chromium}"
+    export BUILD_TYPE="${1:-chromium}"
 
-	if [ "$BUILD_TYPE" = "chromium" ]; then
-		export MY_PATCHES_LIST_FILE="$START_DIR/patches/chromium_patch_list.txt"
-		export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/chromium_patches_list.txt"
-		export ARGS_GN_FILE="$START_DIR/bromite/build/chromium.gn_args"
-		export OUT_DIR="out/Chromium"
-	elif [ "$BUILD_TYPE" = "bromite" ]; then
-		export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
-		export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
-		export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
-		export OUT_DIR="out/Bromite"
-	elif [ "$BUILD_TYPE" = "potassium" ]; then
-		export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
-		export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
-		export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
-		export OUT_DIR="out/Potassium"
-	else
-		output "Unknown build type: $BUILD_TYPE"
-		exit 1
-	fi
+    if [ "$BUILD_TYPE" = "chromium" ]; then
+        export MY_PATCHES_LIST_FILE="$START_DIR/patches/chromium_patch_list.txt"
+        export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/chromium_patches_list.txt"
+        export ARGS_GN_FILE="$START_DIR/bromite/build/chromium.gn_args"
+        export OUT_DIR="out/Chromium"
+    elif [ "$BUILD_TYPE" = "bromite" ]; then
+        export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
+        export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
+        export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
+        export OUT_DIR="out/Bromite"
+    elif [ "$BUILD_TYPE" = "potassium" ]; then
+        export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
+        export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
+        export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
+        export OUT_DIR="out/Potassium"
+    else
+        output "Unknown build type: $BUILD_TYPE"
+        exit 1
+    fi
 }
 
 pull_bromite() {
-	pushd "$START_DIR" > /dev/null
+    pushd "$START_DIR" > /dev/null
 
-	output "Pulling Bromite repo"
-	if [ -d "bromite" ]; then
-		cd bromite
-		git checkout -f -B master origin/master
-		git pull
-		cd ..
-	else
-		git clone https://github.com/bromite/bromite.git
-	fi
+    output "Pulling Bromite repo"
+    if [ -d "bromite" ]; then
+        cd bromite
+        git checkout -f -B master origin/master
+        git pull
+        cd ..
+    else
+        git clone https://github.com/bromite/bromite.git
+    fi
 
-	# Check out the commit our patches are based upon
-	cd bromite && git checkout "$(cat "$START_DIR/patches/BROMITE_COMMIT")" && cd ..
+    # Check out the commit our patches are based upon
+    # One can also set BROMITE_TAG before running the script; this is done for the upgrade logic
+    if [ -z "$BROMITE_TAG" ]; then
+        BROMITE_TAG="$(cat "$START_DIR/patches/BROMITE_COMMIT")"
+    fi
+    cd bromite && git checkout "$BROMITE_TAG" && cd ..
 
-	popd > /dev/null
+    popd > /dev/null
 }
 
 pull_chromium() {
-	pushd "$START_DIR" > /dev/null
+    pushd "$START_DIR" > /dev/null
 
-	if [ -d "chromium" ]; then
+    if [ -d "chromium" ]; then
         cd chromium
         # Basically reset to origin/master in case anything was changed, e.g. applied patches
         output "Cleaning Chromium repository"
-        cd src && git checkout -f -B master origin/master && cd ..
+        cd src
+        git checkout -f -B master origin/master
+        # also make sure any failed patches are removed
+        git am --abort > /dev/null 2>&1 || true
+
+        cd ..
 
         output "Updating local Chromium checkout for Android"
         # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
         gclient sync --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
-	else
-		mkdir chromium && cd chromium
+    else
+        mkdir chromium && cd chromium
 
-		# Don't fetch history in CI
-		if [ "$CI" == "true" ]; then
-			output "Fetching Chromium for Android (no history)"
-			fetch --nohooks --no-history android
-		else
-			output "Fetching Chromium for Android"
-			fetch --nohooks android
-		fi
-	fi
+        # Don't fetch history in CI
+        if [ "$CI" == "true" ]; then
+            output "Fetching Chromium for Android (no history)"
+            fetch --nohooks --no-history android
+        else
+            output "Fetching Chromium for Android"
+            fetch --nohooks android
+        fi
+    fi
 
-	output "Done fetching code"
+    output "Done fetching code"
 
-	popd > /dev/null
+    popd > /dev/null
 }
 
 install_chromium_dependencies() {
@@ -195,11 +204,11 @@ build_chromium() {
 }
 
 setup() {
-	parse_build_arg "$1"
+    parse_build_arg "$1"
 
-	set_email
+    set_email
 
-	install_depot_tools
+    install_depot_tools
 
-	pull_bromite
+    pull_bromite
 }

@@ -34,6 +34,9 @@ potassium: confirm-branch-reset
 	docker run $(RUN_ARGS) potassium
 	make apks
 
+upgrade: confirm-branch-reset
+	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/upgrade.sh"
+
 current: current-potassium
 
 current-potassium:
@@ -78,4 +81,4 @@ install-windows:
 shell:
 	docker run --entrypoint /bin/bash $(RUN_ARGS)
 
-.PHONY: all chromium bromite container clean shell install-windows install patch-bromite patch-chromium patch gc apks patches current current-bromite current-potassium confirm-branch-reset
+.PHONY: *

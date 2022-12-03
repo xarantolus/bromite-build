@@ -38,9 +38,7 @@ output "Recreating bromite-$BUILD_TYPE-base branch"
 git branch -D "bromite-$BUILD_TYPE-base" || true
 git checkout -b "bromite-$BUILD_TYPE-base"
 
-if [ ! "$2" = "patch" ]; then
-    install_chromium_dependencies
-fi
+install_chromium_dependencies
 
 # Apply bromite patches
 apply_patches "$START_DIR/bromite/build/patches" "$BROMITE_PATCHES_LIST_FILE" "bromite"
