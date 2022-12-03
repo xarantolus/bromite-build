@@ -68,9 +68,10 @@ container:
 
 apks:
 	mkdir -p apks
-	cp chromium/src/out/Potassium/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
-	cp chromium/src/out/Bromite/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
-	cp chromium/src/out/Chromium/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(shell date +%Y-%m-%d_%H-%M).apk >> /dev/null 2>&1 || true
+	$(eval SUFFIX:="$(shell date +%Y-%m-%d_%H-%M)_$(shell cat patches/BROMITE_VERSION)")
+	cp chromium/src/out/Potassium/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Bromite/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Chromium/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
 	fdupes -f apks | grep -v '^$$' | xargs rm -v >> /dev/null 2>&1 || true
 
 install: install-windows
