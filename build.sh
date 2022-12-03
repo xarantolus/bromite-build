@@ -43,13 +43,15 @@ install_chromium_dependencies
 # Apply bromite patches
 apply_patches "$START_DIR/bromite/build/patches" "$BROMITE_PATCHES_LIST_FILE" "bromite"
 
-# Now apply my own patches (on their own branch)
-output "Recreating xarantolus-$BUILD_TYPE branch"
-git branch -D "xarantolus-$BUILD_TYPE-base" || true
-git checkout -b "xarantolus-$BUILD_TYPE-base"
+if [ -n "$MY_PATCHES_LIST_FILE" ]; then
+    # Now apply my own patches (on their own branch)
+    output "Recreating xarantolus-$BUILD_TYPE branch"
+    git branch -D "xarantolus-$BUILD_TYPE-base" || true
+    git checkout -b "xarantolus-$BUILD_TYPE-base"
 
-# Apply my patches
-apply_patches "$START_DIR/patches" "$MY_PATCHES_LIST_FILE" "xarantolus"
+    # Apply my patches
+    apply_patches "$START_DIR/patches" "$MY_PATCHES_LIST_FILE" "xarantolus"
+fi
 
 if [ "$2" = "patch" ]; then
     exit 0

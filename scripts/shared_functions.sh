@@ -38,22 +38,22 @@ install_depot_tools() {
 }
 
 parse_build_arg() {
-    export BUILD_TYPE="${1:-chromium}"
+    export BUILD_TYPE="${1:-potassium}"
 
     if [ "$BUILD_TYPE" = "chromium" ]; then
-        export MY_PATCHES_LIST_FILE="$START_DIR/patches/chromium_patch_list.txt"
+        export MY_PATCHES_LIST_FILE=""
         export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/chromium_patches_list.txt"
         export ARGS_GN_FILE="$START_DIR/bromite/build/chromium.gn_args"
         export OUT_DIR="out/Chromium"
     elif [ "$BUILD_TYPE" = "bromite" ]; then
-        export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
+        export MY_PATCHES_LIST_FILE=""
         export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
         export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
         export OUT_DIR="out/Bromite"
     elif [ "$BUILD_TYPE" = "potassium" ]; then
-        export MY_PATCHES_LIST_FILE="$START_DIR/patches/bromite_patch_list.txt"
+        export MY_PATCHES_LIST_FILE="$START_DIR/patches/potassium_patches_list.txt"
         export BROMITE_PATCHES_LIST_FILE="$START_DIR/bromite/build/bromite_patches_list.txt"
-        export ARGS_GN_FILE="$START_DIR/bromite/build/bromite.gn_args"
+        export ARGS_GN_FILE="$START_DIR/patches/potassium.gn_args"
         export OUT_DIR="out/Potassium"
     else
         output "Unknown build type: $BUILD_TYPE"

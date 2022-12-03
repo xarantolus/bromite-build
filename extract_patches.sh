@@ -34,4 +34,4 @@ echo "$BROMITE_LATEST_TAG" > "$START_DIR/patches/BROMITE_VERSION"
 echo "$BROMITE_COMMIT" > "$START_DIR/patches/BROMITE_COMMIT"
 
 cd "$START_DIR/patches"
-ls *.patch > "$START_DIR/patches/bromite_patch_list.txt"
+ls *.patch > "$START_DIR/patches/potassium_patches_list.txt"

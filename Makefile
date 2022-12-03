@@ -43,10 +43,6 @@ current-potassium:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" potassium
 	make apks
 
-current-bromite:
-	docker run --entrypoint /bin/bash $(RUN_ARGS) "/build/build_current.sh" bromite
-	make apks
-
 patch-bromite: confirm-branch-reset
 	docker run $(RUN_ARGS) bromite patch
 
