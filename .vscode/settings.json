@@ -12,5 +12,6 @@
 	"git.ignoredRepositories": [
 		"depot_tools",
 		"bromite"
-	]
+	],
+	"git.ignoreLimitWarning": true
 }

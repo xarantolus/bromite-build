@@ -28,7 +28,7 @@ fi
 PATCHES="$(find "$START_DIR"/patches -name "*.patch")"
 rm -f $PATCHES
 
-git format-patch --no-numbered -o "$START_DIR/patches" "bromite-bromite-base..$BRANCH"
+git format-patch --no-numbered -o "$START_DIR/patches" "bromite-potassium-base..$BRANCH"
 
 echo "$BROMITE_LATEST_TAG" > "$START_DIR/patches/BROMITE_VERSION"
 echo "$BROMITE_COMMIT" > "$START_DIR/patches/BROMITE_COMMIT"

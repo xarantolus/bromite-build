@@ -25,4 +25,4 @@ fi
 
 # Fetch Chromium changes, resetting to the latest Bromite version and then applying all patches patches
 cd "$START_DIR"
-BROMITE_TAG="$BROMITE_LATEST_TAG" ./build.sh bromite patch
+BROMITE_TAG="$BROMITE_LATEST_TAG" ./build.sh potassium patch
