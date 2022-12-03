@@ -1,4 +1,4 @@
-From 09ed01f432c6fa719b63084eb747afee91ee3a9d Mon Sep 17 00:00:00 2001
+From 741326867b19e5e684e3f258e7a3a002bdcea462 Mon Sep 17 00:00:00 2001
 From: xarantolus <xarantolus@protonmail.com>
 Date: Sat, 3 Dec 2022 09:35:35 +0100
 Subject: [PATCH] Package and application name
@@ -16,7 +16,7 @@ index 8cd50c454b578..a691bb5d4dc83 100644
 +++ b/chrome/android/BUILD.gn
 @@ -47,7 +47,7 @@ chrome_jni_registration_header =
  chrome_jni_for_test_registration_header = "$root_build_dir/gen/chrome/browser/android/chrome_jni_for_test_registration.h"
-
+ 
  if (current_toolchain == default_toolchain) {
 -  _default_package = "org.bromite.bromite"
 +  _default_package = "org.xarantolus.potassium"
@@ -28,7 +28,7 @@ index b475689e9d23f..8a39508e2258e 100644
 --- a/chrome/android/java/res_chromium_base/values/channel_constants.xml
 +++ b/chrome/android/java/res_chromium_base/values/channel_constants.xml
 @@ -7,9 +7,9 @@ found in the LICENSE file.
-
+ 
  <resources xmlns:android="http://schemas.android.com/apk/res/android">
      <!-- The application name displayed to the user. -->
 -    <string name="app_name" translatable="false">Chromium</string>
@@ -86,7 +86,7 @@ index d819b14b67a5e..a84b63ec4c474 100644
        </message>
        <message name="IDS_FRE_WELCOME" desc="Text for greeting the user on Chrome First Run">
 @@ -3541,9 +3541,9 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
-
+ 
        <!-- Main menu items -->
        <message name="IDS_MENU_UPDATE" desc="Menu item for updating chrome. [CHAR_LIMIT=24]">
 -        Update Bromite
@@ -109,7 +109,7 @@ index d819b14b67a5e..a84b63ec4c474 100644
 @@ -4889,17 +4889,17 @@ To change this setting, <ph name="BEGIN_LINK">&lt;resetlink&gt;</ph>reset sync<p
          Copied to your clipboard
        </message>
-
+ 
 -      <message name="IDS_SHARED_INTENT_SHARE_ACTIVITY_TITLE" desc="Text that will appear in the Android share dialog to open an URL with Bromite.">
 -        Open URL with Bromite
 +      <message name="IDS_SHARED_INTENT_SHARE_ACTIVITY_TITLE" desc="Text that will appear in the Android share dialog to open an URL with Potassium.">
@@ -130,10 +130,10 @@ index d819b14b67a5e..a84b63ec4c474 100644
 +      <message name="IDS_SHARED_INTENT_SHARE_ACTIVITY_OPENINCOGNITO_TEXT" desc="Text to show in the button for opening with Potassium in incognito.">
 +        Open with Potassium Incognito
        </message>
-
+ 
        <!-- Sms Fetcher -->
 diff --git a/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb b/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb
-index c2ac32b9fc8fd..2477fbc14a650 100644
+index c2ac32b9fc8fd..e6aaa1604ce4f 100644
 --- a/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb
 +++ b/chrome/browser/ui/android/strings/translations/android_chrome_strings_de.xtb
 @@ -15,21 +15,21 @@
@@ -187,7 +187,7 @@ index c2ac32b9fc8fd..2477fbc14a650 100644
 -<translation id="1332100670807501334">Mithilfe der Anzeigenanalyse können von dir besuchte Websites Informationen von Chrome anfordern, mit denen sie die Leistung ihrer Werbung analysieren können. Durch die Anzeigenanalyse wird das websiteübergreifende Tracking eingeschränkt, indem so wenig Informationen wie möglich zwischen Websites ausgetauscht werden.
 +<translation id="1331212799747679585">Potassium kann nicht aktualisiert werden. Weitere Optionen</translation>
 +<translation id="1332100670807501334">Mithilfe der Anzeigenanalyse können von dir besuchte Websites Informationen von Potassium anfordern, mit denen sie die Leistung ihrer Werbung analysieren können. Durch die Anzeigenanalyse wird das websiteübergreifende Tracking eingeschränkt, indem so wenig Informationen wie möglich zwischen Websites ausgetauscht werden.
-
+ 
  Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bestimmte Website –, werden auch die damit verbundenen Analysedaten gelöscht. <ph name="BEGIN_LINK" />Hier kannst du deinen Browserverlauf aufrufen.<ph name="END_LINK" /></translation>
 -<translation id="1332501820983677155">Tastenkombinationen für Google Chrome-Funktionen</translation>
 +<translation id="1332501820983677155">Tastenkombinationen für Potassium-Funktionen</translation>
@@ -225,7 +225,7 @@ index c2ac32b9fc8fd..2477fbc14a650 100644
  <translation id="1592864538817356322">Standardschutz</translation>
 @@ -128,13 +128,13 @@ Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bes
  Basierend auf deiner Interaktion mit einer Website, z. B. regelmäßige Anmeldungen in einem Konto, kann diese Website ein Trust Token für deinen Browser ausstellen. Wenn andere von dir besuchte Websites später dann ein gültiges Trust Token finden, ist die Wahrscheinlichkeit höher, dass du als Person und nicht als Bot eingestuft wirst.
-
+ 
  Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet werden, deine Identität zu ermitteln.</translation>
 -<translation id="1627304841979541023"><ph name="BEGIN_BOLD" />So kannst du deine Daten verwalten<ph name="END_BOLD" />: Zum Schutz deiner Daten löschen wir automatisch deine Interessen, die älter als vier Wochen sind. Je nach deinen Browsingaktivitäten können die Interessen wieder in der Liste erscheinen. Du kannst jedoch Interessen entfernen, die Chrome nicht berücksichtigen soll.</translation>
 +<translation id="1627304841979541023"><ph name="BEGIN_BOLD" />So kannst du deine Daten verwalten<ph name="END_BOLD" />: Zum Schutz deiner Daten löschen wir automatisch deine Interessen, die älter als vier Wochen sind. Je nach deinen Browsingaktivitäten können die Interessen wieder in der Liste erscheinen. Du kannst jedoch Interessen entfernen, die Potassium nicht berücksichtigen soll.</translation>
@@ -255,7 +255,7 @@ index c2ac32b9fc8fd..2477fbc14a650 100644
  <translation id="1849863543394887018">Du kannst die Benachrichtigungen in den Einstellungen deaktivieren</translation>
 -<translation id="1854311313115643875">Wenn Tests aktiviert sind, können mithilfe der Anzeigenanalyse von dir besuchte Websites Informationen von Chrome anfordern, mit denen sie die Leistung ihrer Werbung analysieren können. Durch die Anzeigenanalyse wird das websiteübergreifende Tracking eingeschränkt, indem so wenig Informationen wie möglich zwischen Websites ausgetauscht werden.
 +<translation id="1854311313115643875">Wenn Tests aktiviert sind, können mithilfe der Anzeigenanalyse von dir besuchte Websites Informationen von Potassium anfordern, mit denen sie die Leistung ihrer Werbung analysieren können. Durch die Anzeigenanalyse wird das websiteübergreifende Tracking eingeschränkt, indem so wenig Informationen wie möglich zwischen Websites ausgetauscht werden.
-
+ 
  Wenn du deinen Browserverlauf löschst – entweder komplett oder für eine bestimmte Website –, werden auch die damit verbundenen Analysedaten gelöscht. <ph name="BEGIN_LINK" />Hier kannst du deinen Browserverlauf aufrufen.<ph name="END_LINK" /></translation>
 -<translation id="1877026089748256423">Chrome ist veraltet.</translation>
 +<translation id="1877026089748256423">Potassium ist veraltet.</translation>
@@ -586,7 +586,7 @@ index c2ac32b9fc8fd..2477fbc14a650 100644
  <translation id="451872707440238414">Lesezeichen durchsuchen</translation>
 -<translation id="4521489764227272523">Die ausgewählten Daten wurden aus Chrome und von allen deinen synchronisierten Geräten entfernt.
 +<translation id="4521489764227272523">Die ausgewählten Daten wurden aus Potassium und von allen deinen synchronisierten Geräten entfernt.
-
+ 
  Eventuell findest du unter <ph name="BEGIN_LINK" />history.google.com<ph name="END_LINK" /> weitere Formen des Browserverlaufs wie Suchanfragen oder Aktivitäten anderer Google-Dienste für dein Google-Konto.</translation>
  <translation id="452750746583162491">Synchronisierte Daten prüfen</translation>
 @@ -660,13 +660,13 @@ Eventuell findest du unter <ph name="BEGIN_LINK" />history.google.com<ph name="E
@@ -768,7 +768,7 @@ index c2ac32b9fc8fd..2477fbc14a650 100644
 -<translation id="6380100320871303656">Chrome lädt Seiten häufiger vorab, die du wahrscheinlich aufrufen wirst. Bei dieser Einstellung werden voraussichtlich mehr Daten genutzt.</translation>
 +<translation id="6380100320871303656">Potassium lädt Seiten häufiger vorab, die du wahrscheinlich aufrufen wirst. Bei dieser Einstellung werden voraussichtlich mehr Daten genutzt.</translation>
  <translation id="6385407407546870227">Wenn Tests aktiviert sind, verwendet die Spam- und Betrugsreduzierung Trust Tokens, um Websites bei der Betrugsbekämpfung und der Unterscheidung zwischen Bots und Personen zu unterstützen.
-
+ 
  Basierend auf deiner Interaktion mit einer Website, z. B. regelmäßige Anmeldungen in einem Konto, kann diese Website ein Trust Token für deinen Browser ausstellen. Wenn andere von dir besuchte Websites später dann ein gültiges Trust Token finden, ist die Wahrscheinlichkeit höher, dass du als Person und nicht als Bot eingestuft wirst.
 @@ -988,7 +988,7 @@ Trust Tokens verbessern den Datenschutz im Web und können nicht dazu verwendet
  <translation id="6394791151443660613">Suchen: <ph name="SEARCH_QUERY" /></translation>
@@ -1172,6 +1172,6 @@ index c2ac32b9fc8fd..2477fbc14a650 100644
 -</translationbundle>
 \ No newline at end of file
 +</translationbundle>
---
+-- 
 2.25.1
 
