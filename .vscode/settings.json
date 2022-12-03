@@ -5,4 +5,12 @@
 		"**/out/**": true,
 	},
 	"search.useIgnoreFiles": false,
+	"git.scanRepositories": [
+		"chromium/src",
+		".",
+	],
+	"git.ignoredRepositories": [
+		"depot_tools",
+		"bromite"
+	]
 }
