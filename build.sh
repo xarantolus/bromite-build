@@ -51,6 +51,8 @@ if [ -n "$MY_PATCHES_LIST_FILE" ]; then
 
     # Apply my patches
     apply_patches "$START_DIR/patches" "$MY_PATCHES_LIST_FILE" "xarantolus"
+
+    git checkout -B "xarantolus-$BUILD_TYPE-changes"
 fi
 
 if [ "$2" = "patch" ]; then

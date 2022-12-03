@@ -53,6 +53,9 @@ patches: patch
 patch:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) /build/extract_patches.sh
 
+repatch:
+	docker run --entrypoint /bin/bash $(RUN_ARGS) /build/repatch.sh
+
 gc:
 	docker run --entrypoint /bin/bash $(RUN_ARGS) -c "cd chromium/src && git gc"
 
