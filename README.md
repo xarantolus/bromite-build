@@ -18,6 +18,7 @@ Then you can take a look at the [`Makefile`](Makefile) to see what targets are a
 * `current`: Does *not* update the Chromium and Bromite code, but rather just builds what is there. This assumes you want to build Potassium, my own browser variant (it uses the `out/Potassium` directory)
 * `patch-bromite`, `patch-chromium`: Downloads & patches the code, but doesn't run the build
 * `patch`: Extracts commits you made to the current branch to patch files in the `patches` directory (the branch *must* start with `xarantolus-` and must not end with `-base`; these branches are created by the build script to know where your changes started)
+* `repatch`: Resets the checkout to the Bromite base version and then re-applies the Potassium patches. Useful for testing if the generated patches still apply cleanly
 * `container`: Builds the Docker container. Do this if you don't want to use the pre-built container from the GitHub registry or there were changes to the Dockerfile. This container is the base container for the VSCode dev container
 * `gc`: Runs `git gc` on the Chromium repository within Docker
 * `install`: Assumes you're on Windows and uses `adb` to install a built Bromite APK
