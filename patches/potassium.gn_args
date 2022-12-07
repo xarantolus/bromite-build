@@ -46,4 +46,3 @@ use_rtti=false
 use_stable_package_name_for_trichrome=false
 use_sysroot=false
 webview_includes_weblayer=false
-target_cpu="arm64"

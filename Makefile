@@ -6,7 +6,12 @@ ifeq ($(LOCAL_WORKSPACE_FOLDER),)
 	LOCAL_WORKSPACE_FOLDER=${CURDIR}
 endif
 
-RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build" -e "CI=${CI}"
+# Available options: https://chromium.googlesource.com/chromium/src/+/master/docs/android_build_instructions.md#figuring-out-target_cpu
+ifeq ($(CPU_ARCH),)
+	CPU_ARCH := "arm64"
+endif
+
+RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build" -e "CI=${CI}" -e "CPU_ARCH=${CPU_ARCH}"
 # if in CI, don't use interactive flag
 ifeq ($(CI),true)
 	RUN_ARGS+= -t $(CONTAINER_NAME)
@@ -68,9 +73,9 @@ container:
 apks:
 	mkdir -p apks
 	$(eval SUFFIX:="$(shell date +%Y-%m-%d_%H-%M)_$(shell cat patches/BROMITE_VERSION)")
-	cp chromium/src/out/Potassium/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
-	cp chromium/src/out/Bromite/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
-	cp chromium/src/out/Chromium/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Potassium-arm64/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Bromite-arm64/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Chromium-arm64/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
 	fdupes -f apks | grep -v '^$$' | xargs rm -v >> /dev/null 2>&1 || true
 
 install: install-windows
