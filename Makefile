@@ -8,7 +8,7 @@ endif
 
 # Available options: https://chromium.googlesource.com/chromium/src/+/master/docs/android_build_instructions.md#figuring-out-target_cpu
 ifeq ($(CPU_ARCH),)
-	CPU_ARCH := "arm64"
+	CPU_ARCH := arm64
 endif
 
 RUN_ARGS=--rm -v "/etc/timezone:/etc/timezone:ro" -v "/etc/localtime:/etc/localtime:ro" -v "${LOCAL_WORKSPACE_FOLDER}:/build" -e "CI=${CI}" -e "CPU_ARCH=${CPU_ARCH}"
@@ -72,10 +72,10 @@ container:
 
 apks:
 	mkdir -p apks
-	$(eval SUFFIX:="$(shell date +%Y-%m-%d_%H-%M)_$(shell cat patches/BROMITE_VERSION)")
-	cp chromium/src/out/Potassium-arm64/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
-	cp chromium/src/out/Bromite-arm64/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
-	cp chromium/src/out/Chromium-arm64/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	$(eval SUFFIX:=$(shell date +%Y-%m-%d_%H-%M)_$(shell cat patches/BROMITE_VERSION))
+	cp chromium/src/out/Potassium-${CPU_ARCH}/apks/ChromePublic.apk apks/Potassium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Bromite-${CPU_ARCH}/apks/ChromePublic.apk apks/Bromite-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
+	cp chromium/src/out/Chromium-${CPU_ARCH}/apks/ChromePublic.apk apks/Chromium-ChromePublic-$(SUFFIX).apk >> /dev/null 2>&1 || true
 	fdupes -f apks | grep -v '^$$' | xargs rm -v >> /dev/null 2>&1 || true
 
 install: install-windows
