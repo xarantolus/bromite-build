@@ -32,7 +32,7 @@ cd chromium/src
 echo "Currently in $(pwd)"
 
 output "Resetting Chromium source code to Bromite base version"
-git checkout -f "$BROMITE_RELEASE_VERSION"
+git checkout -f "tags/$BROMITE_RELEASE_VERSION"
 
 output "Recreating bromite-$BUILD_TYPE-base branch"
 git branch -D "bromite-$BUILD_TYPE-base" || true

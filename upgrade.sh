@@ -11,7 +11,7 @@ cd bromite
 git checkout -f -B master origin/master
 git pull
 BROMITE_LATEST_TAG="$(git describe --tags --abbrev=0)"
-git checkout "$BROMITE_LATEST_TAG"
+git checkout "tags/$BROMITE_LATEST_TAG"
 BROMITE_COMMIT="$(git rev-parse HEAD)"
 cd ..
 

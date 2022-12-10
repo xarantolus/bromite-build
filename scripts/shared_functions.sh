@@ -101,7 +101,7 @@ pull_chromium() {
 
         output "Updating local Chromium checkout for Android"
         # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
-        gclient sync --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
+        gclient sync -D --nohooks --reset --revision "src@$BROMITE_RELEASE_VERSION"
     else
         mkdir chromium && cd chromium
 
