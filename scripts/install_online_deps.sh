@@ -13,7 +13,6 @@ git clone --depth 1 https://chromium.googlesource.com/chromium/src/build
 sed -e '/ snapcraft\"/ s/^#*/    echo \"Skipping snapcraft\" # /' -i build/install-build-deps.sh
 
 # Install build dependencies
-build/install-build-deps.sh --no-prompt --arm
-build/install-build-deps-android.sh --no-prompt
+build/install-build-deps.sh --no-prompt --arm --android
 
 popd
