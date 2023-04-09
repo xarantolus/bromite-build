@@ -6,6 +6,8 @@ set -e # exit on error
 START_DIR="$(pwd)"
 source "$START_DIR/scripts/shared_functions.sh"
 
+set_email
+
 # Update bromite repository
 cd bromite
 git checkout -f -B master origin/main

@@ -2,6 +2,9 @@
 # This requires that the build.sh script has been run for Bromite or (Bromite-)Chromium
 
 START_DIR="$(pwd)"
+source "$START_DIR/scripts/shared_functions.sh"
+
+set_email
 
 # Collect bromite version info
 cd bromite

@@ -12,8 +12,12 @@ output() {
 }
 
 set_email() {
-    git config user.name "xarantolus"
-    git config user.email "xarantolus@protonmail.com"
+    if [ -z "$(git config --global user.email)" ]; then
+        git config --global user.email "bromite-build@010.one"
+    fi
+    if [ -z "$(git config --global user.name)" ]; then
+        git config --global user.name "Bromite Build Bot"
+    fi
 }
 
 install_depot_tools() {
