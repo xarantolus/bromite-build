@@ -8,7 +8,7 @@ setup "$1"
 cd chromium/src
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-if [[ "$BRANCH" != "master" ]] && [[ "$BRANCH" != xarantolus-* ]] || [[ "$BRANCH" == *-base ]]; then
+if [[ "$BRANCH" != "main" ]] && [[ "$BRANCH" != xarantolus-* ]] || [[ "$BRANCH" == *-base ]]; then
 	echo "Branch $BRANCH does not start with xarantolus (or ends with base); are you sure you are on a working branch?"
 	exit 1
 fi

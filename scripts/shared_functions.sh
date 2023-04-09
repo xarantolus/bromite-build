@@ -90,10 +90,10 @@ pull_chromium() {
 
     if [ -d "chromium" ]; then
         cd chromium
-        # Basically reset to origin/master in case anything was changed, e.g. applied patches
+        # Basically reset to origin/main in case anything was changed, e.g. applied patches
         output "Cleaning Chromium repository"
         cd src
-        git checkout -f -B master origin/master
+        git checkout -f -B main origin/main
         # also make sure any failed patches are removed
         git am --abort > /dev/null 2>&1 || true
 
