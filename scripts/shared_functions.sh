@@ -150,6 +150,14 @@ apply_patches() {
 
     output "Applying $3 patches from $2"
 
+    # set a git email if none is set -- otherwise applying patches fails
+    if [ -z "$(git config --global user.email)" ]; then
+        git config --global user.email "bromite-build@010.one"
+    fi
+    if [ -z "$(git config --global user.name)" ]; then
+        git config --global user.name "Bromite Build Bot"
+    fi
+
     # first make sure any failed patches are removed
     git am --abort > /dev/null 2>&1 || true
 
